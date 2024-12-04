@@ -1,0 +1,27 @@
+#footer{
+    height:26vw;
+    width: 100vw;
+     background: rgb(0, 0, 0);
+    background: linear-gradient(180deg,  rgba(32, 83, 170, 1) 1%,  rgba(14, 47, 130, 1) 19%, rgba(9, 26, 72, 1) 41%,  rgba(2, 8, 24, 1) 67%, rgba(0, 0, 0, 1) 100%);
+}
+#fmain{
+    height:22vw;
+    width: 100vw;
+    display: inline-flex;
+    font-family: xx;
+    color:rgb(245, 243, 243);
+    font-size: 15vw;
+    font-weight: 600;
+    overflow: hidden;
+    perspective: 1500px;
+    pointer-events: none;
+}
+#fbot{
+    height:4vw;
+    width: 100vw;   
+    color:rgb(245, 243, 243);
+    display: flex;
+    align-items: center;
+    font-size: 3vw;
+    justify-content: space-around;
+}

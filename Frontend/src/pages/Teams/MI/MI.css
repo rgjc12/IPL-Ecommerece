@@ -1,0 +1,53 @@
+#mitop{
+    height:36.8vw;
+    width:100vw;
+    padding-top: 6.2vw;
+}
+.mySwiper {
+    width: 100%;
+    height: 100%;    
+    overflow: hidden;
+  }
+  
+  .mySwiper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+  #mimid{
+        height:50vw;
+        width:100vw;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+  }
+  #mibot{
+    min-height:60vw;
+    width:100vw;  
+}
+.heading2{
+  height:14vw;
+  width:100vw;
+  margin-top: 3vw;
+  font-family: xx;
+  margin-left: 2vw;
+  font-size: 5.2vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  background: -webkit-linear-gradient(#091D50,#0C3675,#5398CF,#81B2DB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; 
+
+}
+#mitems{
+  min-height:46vw;
+  width:96vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}

@@ -1,0 +1,68 @@
+.card{
+    height:38vw;
+    width:26vw;
+    background-color: red;
+    border-radius: 5px;
+    overflow: hidden;
+    
+
+}
+.wrapper10{
+    height: 28vw;
+    width: 24vw;
+    margin-left: 1vw;
+    margin-top: 1vw;
+    border-radius: 5px;
+    background-color: red;
+    overflow: hidden;
+}
+.wrapper10 img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+.cardbot{
+    height: 6vw;
+    width: 24vw;
+    margin-left: 1vw;
+   
+    margin-top: 0.5vw;
+    
+}
+.bottext h3{
+    font-family: xx;
+    font-weight: 550;
+    font-size: 1.2vw;
+}
+.price{
+    font-family: xx;
+    font-size: 1.1vw;
+    font-weight: 800;
+    color: #F2C029;
+    margin-top: 0.5vw;
+}
+.botbut{
+    height: 4vw;
+    width: 24vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.but1{
+    font-family: xx;
+    font-weight: 800;
+    font-size: 1.3vw;
+    border-radius: 5px;
+    height:3vw;
+    width: auto;
+    cursor:pointer;
+}
+.but2{
+    font-family: xx;
+    font-weight: 800;
+    font-size: 1.3vw;
+    border-radius: 5px;
+    height:3vw;
+    width: auto;
+    cursor:pointer;
+}

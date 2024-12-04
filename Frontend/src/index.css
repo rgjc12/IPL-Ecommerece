@@ -1,0 +1,24 @@
+*{
+    border:0;
+    margin: 0;
+}
+@font-face {
+    font-family: xx;
+    src: url(/Fonts/x1.ttf);
+}
+@font-face {
+    font-family: y1;
+    src: url(/Fonts/y1.woff2);
+}
+@font-face {
+    font-family: y2;
+    src: url(/Fonts/y2.woff2);
+}
+@font-face {
+    font-family: z1;
+    src: url(/Fonts/z1.woff2);
+}
+@font-face {
+    font-family: q1;
+    src: url(/Fonts/q1.woff2);
+}

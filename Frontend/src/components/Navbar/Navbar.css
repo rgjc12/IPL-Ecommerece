@@ -1,0 +1,79 @@
+#navbar{
+    height:6.3vw;
+    width:100vw;
+    position: fixed;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#nav-l{
+    height:6.2vw;
+    width:36vw;
+    margin-left: 2vw;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#nav-l img{
+    height:6vw;
+    width:auto;
+    object-fit: cover;
+}
+#navltext{
+    height:1.9vw;
+    width:16vw;
+    cursor: pointer;
+    color:whitesmoke;
+    font-family: xx;
+    font-size: 1.25vw;
+    font-weight: 700;
+    overflow: hidden;
+}
+.navltext1{
+    height:1.9vw;
+    width:16vw;
+    margin:0;
+    pointer-events: none;  
+   
+}
+#nav-r{
+    height:6.3vw;
+    width:18vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    padding-right: 2vw;
+    color:whitesmoke;
+    font-family: xx;
+    font-weight: 700;
+    font-size: 1.25vw;
+    }
+    #nrrtext{
+        display:flex;
+    }
+   
+#navr-l{
+    height:1.9vw;
+    width:auto;
+    
+    cursor:pointer;
+    }
+    #navr-r{
+        height:1.9vw;
+        width:auto;
+        
+        cursor:pointer;
+    }
+    .nunder1{
+        height:2px;
+        width:0%;
+        background-color: whitesmoke;
+    }
+    .nunder2{
+        height:2px;
+        width:0%;
+        background-color: whitesmoke;
+    }

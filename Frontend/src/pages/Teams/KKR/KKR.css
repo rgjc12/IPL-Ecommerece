@@ -1,0 +1,133 @@
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+  }
+  html::-webkit-scrollbar {
+    display: none;
+  }
+#kmain{
+    overflow-x: hidden;   
+}
+#ktop{
+    height:38vw;
+    width:100vw;
+    position: relative;
+    padding-top: 6.2vw;;
+}
+#ktop img{
+    height:38vw;
+    width:100vw;
+    object-fit: cover;    
+}
+#ktopl{
+    position: absolute;
+    top:0;
+    height:100%;
+    width:41vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;  
+    padding-left: 4vw; 
+    background: rgb(31,2,69);
+    background: linear-gradient(90deg, rgba(31,2,69,1) 27%, rgba(50,8,113,1) 77%, rgba(57,8,125,1) 100%);
+}
+#ktop1{
+    height:10vw;
+    width:110%;
+    margin-left: 4vw;
+    font-family: "Oswald", sans-serif;
+    font-size: 8.9vw;
+    color:#F2C029;
+    font-weight: 450;    
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+    }
+    #ktop2{
+        height:10vw;
+        width:110%;        
+        margin-left: 4vw;
+        font-family: "Oswald", sans-serif;
+        font-size: 8.9vw;
+        color:#F2C029;
+        font-weight: 450;
+        margin-top: 0;
+        padding-top: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        display: flex;
+        align-items: center;
+        overflow: hidden;        
+        }
+        #ktop2 span{
+            height:10vw;
+            width:110%; 
+            display: flex;
+            align-items: center;
+        }
+        #ktop2 img{
+            height:7.5vw;
+            width: 0;
+            margin-right: 0vw;
+            object-fit: cover;
+            background-color: #F2C029;
+            border-radius: 10px;
+        }
+        #ktop3{
+            height:10vw;
+            width:110%;
+            margin-left:4vw;
+            font-family: "Oswald", sans-serif;
+            font-size: 8.9vw;
+            color:#F2C029;
+            font-weight: 450;            
+            display: flex;
+         align-items: center;
+         overflow: hidden;
+    }
+    #kmid{
+        height:50vw;
+        width:100vw;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #kbot{
+        min-height:60vw;
+        width:100vw;
+        
+
+    }
+    .heading{
+        height:14vw;
+        width:100vw;
+        margin-top: 3vw;
+        font-family: xx;
+        margin-left: 2vw;
+        font-size: 5.2vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        background: -webkit-linear-gradient(#1F0245,#250452,#31076F,#F2C029,#C9932C);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;    
+        
+
+    }
+    #kitems{
+        min-height:46vw;
+        width:96vw;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }

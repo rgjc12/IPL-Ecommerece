@@ -1,0 +1,16 @@
+#p2text{
+    display:flex;
+    align-items: center;
+    justify-self:center;
+    perspective: 1500px;
+}
+#p2text h1{
+    font-family:z1;
+    font-size: 15.5vw;
+    margin-top: 1vw;
+    margin-bottom: 0;
+    transform-origin: 50%,50%;    
+    background: -webkit-linear-gradient(#D60C14,#B80F15,#811418,#341A1B,#351B1C,#1D1D1D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;    
+}

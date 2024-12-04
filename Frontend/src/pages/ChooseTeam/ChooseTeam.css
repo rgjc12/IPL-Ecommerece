@@ -1,0 +1,339 @@
+html {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    
+  }
+  html::-webkit-scrollbar {
+    display: none;
+  }
+#choosetop{
+    height:69vw;
+    width:100vw;
+    background-color: #071026;
+    position: relative;
+}
+#choosetop img{
+    height:21vw;
+    width:100vw;
+    object-fit: cover;
+}
+#chtopover{
+    position: absolute;
+    top:0;
+    height: 100%;
+    width: 100vw;
+}
+#chtext{
+    height:16vw;
+    width:100vw;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#t1i
+{
+    height:9vw;
+    width:100%;
+    font-family: xx;
+    font-size: 7.3vw;
+    font-weight: 600;
+    color:red;    
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+ }
+#t2i{
+    height:9vw;
+    width:100%;
+    font-family: xx;
+    font-size: 7.3vw;
+    font-weight: 600;
+    color:red;    
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    overflow: hidden;
+}
+
+#chcards{
+    margin-top: 6vw;
+    height:45vw;
+    width:100vw;    
+}
+.mySwiper5{
+  height:43vw;
+  width:100vw;
+}
+#card1
+{
+  height:32.5vw;
+  width:24vw;
+  position: relative;
+  border:2px solid #EEBB27;
+  border-radius: 10px;  
+  background:url(./Images/ChooseTeam/k0.png);
+  background-size: cover;
+  background-position: center;
+}
+#card2
+{
+  height:32.5vw;
+  width:24vw;
+  position: relative;
+  border:2px solid #8E1609;
+  border-radius: 10px;  
+  background:url(./Images/ChooseTeam/r0.png);
+  background-size: cover;
+  background-position: center;
+}
+#card3
+{
+  height:32.5vw;
+  width:24vw;
+  position: relative;
+  border:2px solid whitesmoke;
+  border-radius: 10px;  
+  background:url(./Images/ChooseTeam/m0.png);
+  background-size: cover;
+  background-position: center;
+}
+#wrapper1{
+    height:23vw;
+    width:22vw;
+    background-color: #EEBB27;
+    position:absolute;
+    top:1vw;
+    right:1vw;
+    border-radius: 10px;
+    transition: all 0.5s;
+    z-index:1;
+    }
+    #wrapper2{
+        height:23vw;
+        width:22vw;
+        background-color: #1d1d1d;
+        position:absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top:1vw;
+        right:1vw;
+        border-radius: 10px;
+        transition: all 0.5s;
+        z-index:1;
+        }
+        #wrapper3{
+            height:23vw;
+            width:22vw;
+            background-color: whitesmoke;
+            position:absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top:1vw;
+            right:1vw;
+            border-radius: 10px;
+            transition: all 0.5s;
+            z-index:1;
+            }
+#wrapper1 img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+#wrapper2 img{
+    height:100%;
+    width:auto;
+    object-fit: cover;
+}
+#wrapper3 img{
+    height:100%;
+    width:auto;
+    object-fit: cover;
+}
+#card1:hover #wrapper1
+{
+  transform: perspective(1000px) translateY(-9%) rotateX(30deg) translateZ(0);
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+#card2:hover #wrapper2
+{
+  transform: perspective(1000px) translateY(-9%) rotateX(30deg) translateZ(0);
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+#card3:hover #wrapper3
+{
+  transform: perspective(1000px) translateY(-9%) rotateX(30deg) translateZ(0);
+  box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+#c1 img{
+    position: absolute;
+    top:0vw;
+    left:2vw;
+    height:29vw;
+    width:auto;
+    object-fit: cover;     
+    transition: all 0.5s;
+    opacity:0;  
+    z-index: 2;
+}
+#c2 img{
+    position: absolute;
+    top:0vw;
+    left:-2.5vw;
+    height:29vw;
+    width:auto;
+    object-fit: cover;     
+    transition: all 0.5s;
+    opacity:0;  
+    z-index: 2;
+}
+#c3 img{
+    position: absolute;
+    top:0vw;
+    left:-2.5vw;
+    height:29vw;
+    width:auto;
+    object-fit: cover;     
+    transition: all 0.5s;
+    opacity:0;  
+    z-index: 2;
+}
+#card1:hover #c1 img{
+    opacity: 1;
+    z-index: 2;
+    transform: translate3d(0, -2vw, 100px);
+  }
+  #card2:hover #c2 img{
+    opacity: 1;
+    z-index: 2;
+    transform: translate3d(0, -2vw, 100px);
+  }
+  #card3:hover #c3 img{
+    opacity: 1;
+    z-index: 2;
+    transform: translate3d(0, -2vw, 100px);
+  }
+#title1{
+    width: 100%;
+    position:absolute;
+    transition: transform 0.5s;
+    font-family: "Lexend Zetta", sans-serif;
+    font-size: 1.15vw;
+    font-weight: 900;
+    color:#EEBB27;
+    top: 29vw;
+    z-index: 3;
+}
+#title2{
+    width:100%;
+    position:absolute;
+    transition: transform 0.5s;
+    font-family: "Lexend Zetta", sans-serif;
+    font-size: 1.15vw;
+    font-weight: 900;
+    color:#D2B260;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top:29vw;
+    z-index: 3;
+}
+#title3{
+    width: 100%;
+    position:absolute;
+    transition: transform 0.5s;
+    font-family: "Lexend Zetta", sans-serif;
+    font-size: 1.15vw;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:whitesmoke;
+    top: 29vw;
+    z-index: 3;
+}
+#card1:hover #title1{
+    transform: translate3d(0%, -2vw, 100px);
+    z-index: 3;
+ }
+ #card2:hover #title2{
+    transform: translate3d(0%, -2vw, 100px);
+    z-index: 3;
+ }
+ #card3:hover #title3{
+    transform: translate3d(0%, -2vw, 100px);
+    z-index: 3;
+ }
+ #but1{
+    margin-top: 1vw;
+    margin-left: 7vw;
+    height:1.6vw;
+    border-radius: 10px;
+    width:7.8vw;
+    padding:1vw;
+    background-color: #EEBB27;
+    color:#2E2A6A;
+    font-family: "Lexend Zetta", sans-serif;
+    font-weight: 700;
+    font-size: 1.25vw;
+    text-decoration: none;
+    cursor:pointer;
+    
+ }
+ #but2{
+    margin-top: 1vw;
+    margin-left: 7vw;
+    height:1.6vw;
+    border-radius: 10px;
+    width:7.8vw;
+    padding:1vw;
+    background-color: #961A1E;
+    color:#D2B260;
+    font-family: "Lexend Zetta", sans-serif;
+    font-weight: 700;
+    font-size: 1.25vw;
+    text-decoration: none;
+    cursor:pointer;
+ }
+ #but3{
+    margin-top: 1vw;
+    margin-left: 7vw;
+    height:1.6vw;
+    border-radius: 10px;
+    width:7.8vw;
+    padding:1vw;
+    background-color: #1D539C;
+    color:whitesmoke;
+    font-family: "Lexend Zetta", sans-serif;
+    font-weight: 700;
+    font-size: 1.25vw;
+    text-decoration: none;
+    cursor:pointer;
+ }
+
+ .swiper-pagination-bullet {
+    background-color: red !important;
+  }
+  
+  .swiper-pagination-bullet-active {
+    background-color: darkred !important;
+  }
+  
