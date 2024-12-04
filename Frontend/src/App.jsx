@@ -18,14 +18,13 @@ function App() {
     <>   <ToastContainer /> 
     <div id="main">
       <Routes>
-        <Route path='/' element={<Login/>}/>  
+        <Route path='/' element={<Register/>}/>  
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/chooseteam' element={<ChooseTeam/>}/>
         <Route path="/kkr" element={<KKR/>}/>
         <Route path="/rcb" element={<RCB/>}/>
-        <Route path="/mi" element={<MI/>}/>
-        
+        <Route path="/mi" element={<MI/>}/>        
         <Route path="/cart" element={<Cart/>}/>
         <Route path="/placeorder" element={<Placeorder/>}/>
       </Routes>
