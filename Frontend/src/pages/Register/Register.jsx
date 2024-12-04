@@ -29,7 +29,7 @@ function Register() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/users/register',
+        `${backendUrl}/api/users/register`,
         formData,
         { withCredentials: true }
       );
