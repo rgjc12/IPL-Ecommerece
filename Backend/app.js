@@ -14,18 +14,9 @@ const port = process.env.PORT || 8000;
 connectDB();
 
 app.use(express.json());
-const corsOptions = {
-    origin: 'https://ipl-ecommerece-frontend-qciu69059-rgjc12s-projects.vercel.app/', 
-    credentials: true,  
-    methods: 'GET,POST,PUT,DELETE',
-    allowedHeaders: 'Content-Type,Authorization', 
-};
+const cors = require('cors');
+app.use(cors());
 
-// Enable CORS with the specified options
-app.use(cors(corsOptions));
-
-// Handle preflight OPTIONS requests
-app.options('*', cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser()); 

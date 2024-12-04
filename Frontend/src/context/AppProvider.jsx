@@ -32,7 +32,6 @@ const AppProvider = (props) => {
       setMiProducts(miResponse.data?.data || []);
     } catch (error) {
       console.error("Failed to fetch products:", error);
-
       toast.error("Failed to fetch products. Please check the server.");
     } finally {
       setLoading(false); 
