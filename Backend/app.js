@@ -15,10 +15,10 @@ connectDB();
 
 app.use(express.json());
 const corsOptions = {
-    origin: 'http://localhost:5173', // The frontend URL
-    credentials: true,  // Allow credentials
-    methods: 'GET,POST,PUT,DELETE', // Define allowed methods
-    allowedHeaders: 'Content-Type,Authorization', // Define allowed headers
+    origin: 'https://ipl-ecommerece-frontend-qciu69059-rgjc12s-projects.vercel.app/', 
+    credentials: true,  
+    methods: 'GET,POST,PUT,DELETE',
+    allowedHeaders: 'Content-Type,Authorization', 
 };
 
 // Enable CORS with the specified options

@@ -16,7 +16,7 @@ const AppProvider = (props) => {
   const delivery = 40;
   
 
-  const backendUrl = import.meta.env.VITE_BACKEND;  
+  const backendUrl = import.meta.env.VITE_BACKEND||"https://ipl-ecommerece-backend.vercel.app/";  
   const fetchProducts = async () => {
     setLoading(true);
     try {
