@@ -1,11 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AppContext } from "../../context/AppProvider";
 import "./Trending.css";
+import { useDispatch, useSelector } from 'react-redux';
+import { asyncgetkkrproduct } from '../../store/actions/asyncgetkkrproduct';
+import { asyncgetrcbproducts } from '../../store/actions/asyncgetrcbproducts';
+import { asyncmiproducts } from '../../store/actions/asyncmiproducts';
 
 function Trending({ num }) {
-  const { kkrproducts = [], rcbproducts = [], miproducts = [], loading } = useContext(AppContext);
   const [trendingProducts, setTrendingProducts] = useState([]);
-  const [selectedProduct, setSelectedProduct] = useState(null); 
+  const [selectedProduct, setSelectedProduct] = useState(null);
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(asyncgetkkrproduct());
+    dispatch(asyncgetrcbproducts());
+    dispatch(asyncmiproducts());
+  },[]);
+  const kkrproducts = useSelector(state=>state.kkrproducts.kkrproducts);
+  const rcbproducts = useSelector(state=>state.rcbproducts.rcbproducts);
+  const miproducts = useSelector(state=>state.miproducts.miproducts);
 
   const backgrounds = ["./Images/ChooseTeam/k4.webp", "./Images/ChooseTeam/r4.jpg", "./Images/ChooseTeam/m4.jpg"];
   const colors = ["#F2C029", "#D8BC69", "whitesmoke"];
@@ -13,14 +24,18 @@ function Trending({ num }) {
   
   const prod = num === 0 ? kkrproducts : num === 1 ? rcbproducts : miproducts;
 
-  useEffect(() => {
-    const bestProduct = prod.filter((item) => item.isTrending);
+   
+  
+  useEffect(() => {   
+    if(prod.data){
+    const bestProduct = prod.data.filter((item) => item.isTrending);
     setTrendingProducts(bestProduct.slice(0, 2));
-
     if (bestProduct.length > 0) {
       setSelectedProduct(bestProduct[0]);
-    }
+    }  
+  }
   }, [prod]);
+  
 
   const handleProductClick = (id) => {
     const product = trendingProducts.find((item) => item._id === id);
@@ -29,9 +44,8 @@ function Trending({ num }) {
 
   return (
     <>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
+      
+       
         <div className="tr"
           style={{
             height: "40vw",
@@ -109,7 +123,7 @@ function Trending({ num }) {
             })}
           </div>
         </div>
-      )}
+      
     </>
   );
 }

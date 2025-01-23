@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState} from 'react';
 import './Login.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -6,53 +6,57 @@ import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { AppContext } from '../../context/AppProvider';
+import { useSelector } from 'react-redux';
 import { toast } from "react-toastify";
 import axios from 'axios';
+import { getNum} from '../../store/Reducers/numReducer';
+import { setToken } from '../../store/Reducers/tokenReducer';
+import { useDispatch } from 'react-redux';
+import { setUserId } from '../../store/Reducers/userIdReducer';
+import { getCart } from '../../store/Reducers/cartReducer';
+
+
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
-  const { setToken } = useContext(AppContext); 
   const navigate = useNavigate();
 
-  
+  const backendUrl = useSelector(state => state.backendUrl.backendUrl);
+  const dispatch = useDispatch();
+
   const togglePasswordVisibility = () => {
     setShowPassword((prev) => !prev);
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true); 
 
     try {
-      const response = await axios.post(`${backendUrl}/api/users/login`, { email, password }, { withCredentials: true });
-        console.log(response.data);
-      if (response.data.success) {
-        const { token, Number } = response.data;
-
-        localStorage.setItem('authToken', token); 
-        setToken(token); 
-
-        
+        const response = await axios.post(`${backendUrl}/api/users/login`, { email, password }, { withCredentials: true });
        
-          navigate('/chooseteam');
-        
-
-        toast.success('Login successful');
-      } else {
-        toast.error(response.data.msg);
-      }
+        dispatch(getNum(response.data.num));
+        dispatch(setToken(response.data.token)); 
+        dispatch(setUserId(response.data.userId));
+        localStorage.setItem('userId',response.data.userId);       
+        if (response.data.success) {
+            navigate('/chooseteam');       
+            toast.success('Login successful');
+        } else {
+            toast.error(response.data.msg);
+        }
     } catch (error) {
-      console.error(error);
-      toast.error('Login failed, please try again');
+        console.log(error);
+        toast.error('Login failed, please try again');
     } finally {
-      setIsLoading(false); // Reset loading state
+        setIsLoading(false); 
     }
-  };
+};
+
+  
 
   return (
     <div id="loginmain">
@@ -114,7 +118,7 @@ function Login() {
               <label htmlFor="password" className="form">Password</label>
               <div className="password-wrapper">
                 <input
-                  type={showPassword ? 'text' : 'password'} // Toggle input type
+                  type={showPassword ? 'text' : 'password'} 
                   id="password"
                   className="place1"
                   name="password"
@@ -128,7 +132,7 @@ function Login() {
                   className="toggle-password"
                   onClick={togglePasswordVisibility}
                 >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />} {/* Toggle icons */}
+                  {showPassword ? <FaEyeSlash /> : <FaEye />} 
                 </button>
               </div>
             </div>
@@ -144,6 +148,8 @@ function Login() {
             Don't Have an Account?
           </Link>
         </div>
+      </div>
+      <div id="loginbot">      
       </div>
     </div>
   );

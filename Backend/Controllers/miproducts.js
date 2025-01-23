@@ -1,23 +1,26 @@
 import MIProduct from "../Models/miProduct.js";
-
+import dotenv from 'dotenv';
+import {v2 as cloudinary} from 'cloudinary';
+dotenv.config();
 const addmiproduct = async (req, res) => {
   try {
-    const { name, description, price, isTrending, imageUrl } = req.body;
-
-    if (!name || !description || !price) {
-      return res.status(400).json({ success: false, msg: "Name, description, and price are required" });
-    }
-
-    const imageLinks = Array.isArray(imageUrl) ? imageUrl : [imageUrl];
-    const [img1, img2, img3, img4] = [imageLinks[0] || null, imageLinks[1] || null, imageLinks[2] || null, imageLinks[3] || null];
-
-    const newProduct = new MIProduct({
-      name,
+    const {name,description,price,isTrending}=req.body;
+      const image1=req.files.image1 ? req.files.image1[0] : null;
+      const image2=req.files.image2 ? req.files.image2[0] : null;
+      const image3=req.files.image3 ? req.files.image3[0] : null;
+      const image4=req.files.image4 ? req.files.image4[0] : null;
+      const images=[image1,image2,image3,image4].filter((image)=>image!==null);
+      const imageUrl=await Promise.all(images.map(async(image)=>{
+        const result=await cloudinary.uploader.upload(image.path,{resource_type:"image"});
+        if(result.secure_url)return result.secure_url
+        else return "null";
+      })
+    )
+    const newProduct=new MIProduct({name,
       description,
-      price,
-      imageUrl: [img1, img2, img3, img4],
-      isTrending: isTrending || Math.random() < 0.5,
-    });
+      price:Number(price),
+      isTrending:isTrending==="true"?true:false||Math.random()<0.5,
+      imageUrl});
 
     await newProduct.save();
     res.status(201).json({ success: true, msg: "MI Product added successfully", product: newProduct });
@@ -35,7 +38,7 @@ const addmiproduct = async (req, res) => {
 
 const listmiproducts = async (req, res) => {
     try {
-      const products = await MIProduct.find(); // Fetch all products from the MI collection
+      const products = await MIProduct.find(); 
       res.json({
         success: true,
         data: products,

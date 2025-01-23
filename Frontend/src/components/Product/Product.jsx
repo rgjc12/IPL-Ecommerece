@@ -1,10 +1,9 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { AppContext } from "../../context/AppProvider";
+import React, {useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Product.css"
-function Product({id,name,price,image,num}) {
-  const {currency}=useContext(AppContext);
-  const backgrounds=["./Images/ChooseTeam/k0.png","./Images/ChooseTeam/r0.png","./Images/ChooseTeam/m0.png"];
+function Product({id,name,price,image,num,handleAddToCart,userId,iplTeamNumber}) {
+  const currency='$';  
+  const backgrounds=["/Images/ChooseTeam/k0.png","/Images/ChooseTeam/r0.png","/Images/ChooseTeam/m0.png"];
   const colors=["#F2C029","#D8BC69","whitesmoke"];
   const textcolor=["#352350","#1d1d1d","#091D50"];
   
@@ -28,7 +27,7 @@ function Product({id,name,price,image,num}) {
         <div className="price"><h3 style={{textDecoration: "none !important", color:`${colors[num]}`}}>{currency}&nbsp;{price}</h3></div>
         <div className="botbut">
           <button className="but1" style={{
-            background:`${colors[num]}`,color:`${textcolor[num]}`}}>Add to Cart</button>
+            background:`${colors[num]}`,color:`${textcolor[num]}`}} onClick={()=>handleAddToCart(id,1,userId,iplTeamNumber)}>Add to Cart</button>
           <button className="but2"style={{
             background:`${colors[num]}`,color:`${textcolor[num]}`}}>Buy Now</button>
         </div>

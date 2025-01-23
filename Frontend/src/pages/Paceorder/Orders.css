@@ -1,0 +1,89 @@
+.ordersmain{
+    width:100%;
+    padding:1.5vw;
+}
+.head{
+    font-family:xx;
+    font-size:4.5vw;
+    font-weight:700;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-top:2vw;
+}
+.orders{
+    width:97%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+   
+}
+.eachorder1{
+    width:100%;    
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    border-radius:0.3vw;
+    background-color:1px solid rgb(188, 183, 183);
+    overflow:hidden;    
+
+}
+.eotop{
+    width:100%;
+    background-color:whitesmoke;
+    height:5.5vw;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+.etleft{
+    width:30%;    
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:100%;
+    margin-left:1.5vw;
+}
+.etdate{
+    color:#0097d8;
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:600;
+}
+.etdtime{
+    color:green;
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:600;
+}
+.ettotal{
+   color:#0097d8;
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:600;
+}
+.etright{
+    width:20%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+    margin-right:1.5vw;
+}
+
+.orderid{
+    color:red;
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:600;
+}
+
+.viewbill{
+    color:#0097d8;
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:600;
+}

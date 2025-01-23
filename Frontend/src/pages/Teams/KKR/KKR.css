@@ -10,87 +10,99 @@ html {
     overflow-x: hidden;   
 }
 #ktop{
-    height:38vw;
+    height:50vw;
     width:100vw;
     position: relative;
     padding-top: 6.2vw;;
 }
-#ktop img{
-    height:38vw;
+#container{
+    height:100vh;
     width:100vw;
-    object-fit: cover;    
+    display: flex;
+    overflow: hidden;
 }
-#ktopl{
-    position: absolute;
-    top:0;
-    height:100%;
-    width:41vw;
+#items{
+    width:100vw;
+    display: flex;
+}
+.item-col{
+    flex:1;
+    display: flex;
+}
+#item{
+    position: relative;
+    top:5vh;
+    flex:1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;  
-    padding-left: 4vw; 
-    background: rgb(31,2,69);
-    background: linear-gradient(90deg, rgba(31,2,69,1) 27%, rgba(50,8,113,1) 77%, rgba(57,8,125,1) 100%);
+    width:18vw; 
+       
 }
-#ktop1{
-    height:10vw;
-    width:110%;
-    margin-left: 4vw;
-    font-family: "Oswald", sans-serif;
-    font-size: 8.9vw;
-    color:#F2C029;
-    font-weight: 450;    
+.item-copy{
+    height:3vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.2vw;
+    font-weight: 700;
+    font-family: pp;
+    line-height: 1.2vw;
+    padding-left: 0.5vw;
+}
+.item-side .item-img{   
+    overflow: hidden;
+    clip-path:polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+.item-img img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+}
+.item-copy-wrapper{
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.item-main .item-img{
+    overflow: hidden;
+}
+.item-main .item-img img{    
+    transform: scale(0.5);
+    position: absolute;
+    top:-5vw;
+    clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
+}
+.kkrheader{
+    position: absolute;
+    bottom:23%;
+    transform-origin: center center;
+    width:100vw;
+    display: flex;   
+
+}
+.header-item{
+    position: relative;
+    flex:1;
     display: flex;
     align-items: center;
-    margin-top: 0;
-    padding-top: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    overflow: hidden;
-    }
-    #ktop2{
-        height:10vw;
-        width:110%;        
-        margin-left: 4vw;
-        font-family: "Oswald", sans-serif;
-        font-size: 8.9vw;
-        color:#F2C029;
-        font-weight: 450;
-        margin-top: 0;
-        padding-top: 0;
-        margin-bottom: 0;
-        padding-bottom: 0;
-        display: flex;
-        align-items: center;
-        overflow: hidden;        
-        }
-        #ktop2 span{
-            height:10vw;
-            width:110%; 
-            display: flex;
-            align-items: center;
-        }
-        #ktop2 img{
-            height:7.5vw;
-            width: 0;
-            margin-right: 0vw;
-            object-fit: cover;
-            background-color: #F2C029;
-            border-radius: 10px;
-        }
-        #ktop3{
-            height:10vw;
-            width:110%;
-            margin-left:4vw;
-            font-family: "Oswald", sans-serif;
-            font-size: 8.9vw;
-            color:#F2C029;
-            font-weight: 450;            
-            display: flex;
-         align-items: center;
-         overflow: hidden;
-    }
+    justify-content: center;
+    font-family: ab;
+    transform: scale(0.25);
+}
+.header-item-1{
+    left:18vw;
+}
+.header-item-2{
+right:18vw;
+}
+.letter{
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size:18vw;
+    font-weight: 200;
+    font-family: ab;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
     #kmid{
         height:50vw;
         width:100vw;

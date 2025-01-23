@@ -22,3 +22,15 @@
     font-family: q1;
     src: url(/Fonts/q1.woff2);
 }
+@font-face {
+    font-family: pp;
+    src: url(/Fonts/pp.woff2);
+}
+@font-face {
+    font-family: sg;
+    src: url(/Fonts/sg.woff2);
+}
+@font-face {
+    font-family: ab;
+    src: url(/Fonts/ab.woff2);
+}

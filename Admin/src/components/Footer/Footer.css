@@ -1,0 +1,6 @@
+#footer{
+    height:26vw;
+    width: 100vw;
+     background: rgb(0, 0, 0);
+    background: linear-gradient(180deg,  rgba(32, 83, 170, 1) 1%,  rgba(14, 47, 130, 1) 19%, rgba(9, 26, 72, 1) 41%,  rgba(2, 8, 24, 1) 67%, rgba(0, 0, 0, 1) 100%);
+}

@@ -3,7 +3,6 @@ import "./Footer.css";
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { Link, useLocation } from "react-router-dom";
 gsap.registerPlugin(ScrollTrigger);
 
 function Footer() {
@@ -13,12 +12,23 @@ function Footer() {
     const [yval,sety]=useState(0);
 
 
-    useEffect(()=>{
-        document.addEventListener('mousemove',(e)=>{
-         setx(e.clientX-p12Ref.current.getBoundingClientRect().x-p12Ref.current.getBoundingClientRect().width/2);
-         sety(e.clientY-p12Ref.current.getBoundingClientRect().y-p12Ref.current.getBoundingClientRect().height/2);
-        });
-      })
+    useEffect(() => {
+      const handleMouseMove = (e) => {
+          if (p12Ref.current) {
+              const rect = p12Ref.current.getBoundingClientRect();
+              setx(e.clientX - rect.x - rect.width / 2);
+              sety(e.clientY - rect.y - rect.height / 2);
+          }
+      };
+  
+      document.addEventListener('mousemove', handleMouseMove);
+  
+      
+      return () => {
+          document.removeEventListener('mousemove', handleMouseMove);
+      };
+  }, []);
+  
       
       useGSAP(()=>{
         gsap.to(p12Ref.current, {
@@ -26,30 +36,8 @@ function Footer() {
           ease: "power4.out",
           duration:1.99
         });
-      },[xval,yval]);
-      const main = document.querySelector('#main');
-
-      useGSAP(()=>{
-        gsap.from(p12Ref.current.querySelectorAll('span'), {
-            y:"22vw",
-            opacity:0,
-            stagger:0.25,
-            scrollTrigger:{
-                trigger:p12Ref.current,
-                scroller:main,
-                start:"top 70%",
-                end:"top 50%",
-                scrub: 15,                                
-            }
-
-        })
-        
-
-       
-
-        
-      })
-
+      },[xval,yval]);  
+      
   return (
     <>
     <div id="footer">

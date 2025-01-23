@@ -1,25 +1,35 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import './Register.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
 import { Link, useNavigate } from 'react-router-dom';
-import { AppContext } from '../../context/AppProvider'; 
+import { useSelector } from 'react-redux';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { toast } from "react-toastify";
 import axios from 'axios';
+import { getNum } from '../../store/Reducers/numReducer';
+import { setToken } from '../../store/Reducers/tokenReducer';
+import { setUserId } from '../../store/Reducers/userIdReducer';
+import { useDispatch } from 'react-redux';
+
+
+
 
 function Register() {
-  const { setToken } = useContext(AppContext); 
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
   });
+
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const backendUrl = useSelector(state => state.backendUrl.backendUrl);
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -28,23 +38,20 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${backendUrl}/api/users/register`,
-        formData,
-        { withCredentials: true }
-      );
-      console.log(response.data);
+      const response = await axios.post(`${backendUrl}/api/users/register`,formData);
+      console.log(response.data);   
+
+      dispatch(setToken(response.data.token));
+      dispatch(getNum(response.data.num));
+      dispatch(setUserId(response.data.userId));
+      localStorage.setItem('userId',response.data.userId);
+
 
       if (response.data.success) {
-        toast.success("Registration successful!");
-        
-        const { token } = response.data; 
-        console.log(token);
-        setToken(token);
+        toast.success("Registration successful!");       
         navigate('/chooseteam');
       }
     } catch (error) {
-      // Check if the error response exists, and show the relevant message from the server response
       toast.error(error.response?.data?.msg || 'Something went wrong. Please try again.');
     }
   };

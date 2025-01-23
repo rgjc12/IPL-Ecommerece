@@ -1,0 +1,144 @@
+#eachproduct{
+    min-height: 100vh;
+    width:100vw;
+}
+#eachpro{
+    height:41vw;
+    width:100vw;  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10vw;
+    padding-top: 6.3vw;
+}
+#allpics{
+    height:100%;
+    width:13vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+
+}
+#eachpic{
+    height:12vw;
+    width:9vw;
+    margin: 1vw;
+    overflow: hidden;
+    cursor: pointer;    
+}
+#eachpic img{
+    height:100%;
+    width:100%;
+    object-fit: cover;
+
+}
+#productsegment{
+    height:100%;
+    width:66vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom-right-radius: 15px;
+}
+#mainimg{
+    height:100%;
+    width:61%;      
+    position: relative;
+    overflow: hidden;
+}
+#mainimg img{
+    height:100%;
+    width:100%;
+    object-fit: cover;   
+}
+   
+#productname{
+    font-size: 2.6vw;
+    font-family: xx;
+    font-weight: 700;
+    padding-left: 1vw;
+    height: 7vw;    
+   
+}
+#productdescription{
+    font-size: 1.2vw;
+    font-family: xx;
+    height: 10vw;    
+    padding: 1vw;
+    font-weight: 600;
+}
+#productprice{
+    font-size: 2vw;
+    font-family: xx;
+    height: 3vw;   
+    padding: 1vw;
+    font-weight: 700;
+}
+#sizes{
+    height: 5vw;
+    width:74%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vw;
+}
+#sizes button{
+    height: 3.1vw;
+    width: 4.1vw;
+    border-radius: 3px;    
+    background-color: white;
+    font-size: 1vw;
+    font-family: xx;
+    font-weight: 700;
+    cursor: pointer;
+}
+#eachbottom{
+    height: 5vw;
+    width: 88%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vw;
+}
+.but{
+    height:3vw;
+    width: auto;
+    border-radius: 3px;    
+    color: white;
+    font-size: 1.2vw;
+    font-family: xx;
+    font-weight: 700;
+    cursor: pointer;
+}
+#similar-products {
+    margin-top: 6vw;
+    margin-bottom: 4vw;
+    height:50vw;    
+  }
+  
+  .similar-products-heading {
+    font-size: 6vw;
+    font-family: xx;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2vw;
+  }
+  
+  .similar-products-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .swiper-container1 {
+    width: 100%;
+    height: auto;
+  }
+  
+  .swiper-slide1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+  }
+  
+  
