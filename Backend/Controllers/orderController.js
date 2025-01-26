@@ -94,7 +94,15 @@ const createOrderStripe= async (req, res) => {
 
 const userOrders = async (req, res) => {
     try {
-       
+        const { userId } = req.params;
+
+        const orders = await Order.find({ userId });
+
+        if (orders.length === 0) {
+            return res.status(404).json({ success: false, message: "No orders found for this user!" });
+        }
+        console.log(orders);
+        res.status(200).json({ success: true, orders });
     } catch (error) {
         console.error(error);
         res.status(500).json({ success: false, message: "Error fetching orders!" });
@@ -111,7 +119,15 @@ const updateOrderStatus = async (req, res) => {
         res.status(500).json({ success: false, message: "Error updating order status!" });
     }
 };
+const allOrders= async (req, res) => {
+    try {
+        const orders = await Order.find();
+        res.status(200).json({ success: true, orders });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, message: "Error fetching orders!" });
+    }
+};
 
 
-
-export { createOrder,createOrderStripe,userOrders,updateOrderStatus };
+export { createOrder,createOrderStripe,userOrders,updateOrderStatus,allOrders };

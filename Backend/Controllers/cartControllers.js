@@ -97,15 +97,27 @@ const deleteCart = async (req, res) => {
 }
 
 const deleteCartAll = async (req, res) => { 
-    try{
-        const {userId}=req.params;
-        if(!userId) return res.status(400).json({success:false,message:"Invalid request"});
-        await Cart.deleteMany({userId});
-        res.status(200).json({success:true,message:"Cart deleted successfully"});
+    try {
+        const { userId } = req.params; 
+
+        
+        if (!userId) {
+            return res.status(400).json({ success: false, message: "Invalid userId" });
+        }
+
+        
+        const result = await Cart.deleteMany({ userId });
+
+        if (result.deletedCount > 0) {
+            return res.status(200).json({ success: true, message: "Cart deleted successfully" });
+        } else {
+            return res.status(404).json({ success: false, message: "No cart found for this user" });
+        }
+    } catch (error) {
+        // Handle erors
+        res.status(500).json({ success: false, message: error.message });
     }
-    catch(error){
-        res.status(500).json({success:false,message:error.message});
-    }
-}
+};
+
 
 export {addToCart,getCart,updateCart,deleteCart,deleteCartAll};

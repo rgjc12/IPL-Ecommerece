@@ -17,6 +17,7 @@
     display:flex;
     flex-direction:column;
     align-items:center;
+    border-radius:0.3vw;  
    
 }
 .eachorder1{
@@ -25,9 +26,10 @@
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    border-radius:0.3vw;
-    background-color:1px solid rgb(188, 183, 183);
-    overflow:hidden;    
+    border-radius:0.5vw;
+   border:1px solid rgb(188, 183, 183);
+    overflow:hidden;  
+    margin-bottom:10vw; 
 
 }
 .eotop{
@@ -65,7 +67,7 @@
     font-weight:600;
 }
 .etright{
-    width:20%;
+    width:30%;
     display:flex;
     flex-direction:column;
     justify-content:center;
@@ -87,3 +89,110 @@
     font-size:1.2vw;
     font-weight:600;
 }
+
+.eobottomitem{
+    height:15vw;
+    width:97vw;   
+    display:flex;
+    border-bottom:1px solid rgb(188, 183, 183);
+}
+.eobottomitemleft{
+    height:100%;
+    width:60%;       
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0.5vw;
+    
+}
+.eobottomitemimg{
+    height:12vw;
+    width:9vw;    
+    border-radius:0.45vw;
+    overflow:hidden;
+}
+.eobottomitemimg img{
+    height:100%;
+    width:100%;
+    object-fit:cover;
+}
+.eobottomitemname{
+    font-family:ab;
+    font-size:1.7vw;
+    font-weight:700;
+    width:19vw
+}
+.eobottomitemquantity{
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:700;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+    align-items:center;
+}
+.q1{
+    color:#0097d8;
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:700;
+}
+ .q2{
+    color:green;
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:700;
+}
+.eobottomitemright{     
+    width:40%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.buyagain{
+    height:2vw;
+    width:7vw;    
+    border-radius:0.5vw;
+}
+.buyagainbtn{
+    height:100%;
+    width:100%;
+    background-color:#FFCE12;
+    border-radius:0.5vw;
+    font-family:ab;
+    font-size:1vw;
+    font-weight:600;
+    cursor:pointer;
+}
+.eobottomitemrating{
+    font-family:ab;
+    font-size:1.2vw;
+    font-weight:600;
+}
+.eobottomitemratingstars{
+    width:35%;   
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.eobottomitemratingreviewtextarea{
+    margin-top:1vw;
+    height:3vw;
+    width:100%;
+    border-radius:0.3vw;
+    border:1px solid rgb(188, 183, 183);
+    padding:0.5vw;
+    font-family:ab;
+}
+.eobottomitemratingreviewbtn{
+    height:2vw;
+    width:8vw;
+    border-radius:0.3vw;
+    background-color:#FFCE12;
+    font-family:ab;
+    font-size:1vw;
+    font-weight:600;
+}
+

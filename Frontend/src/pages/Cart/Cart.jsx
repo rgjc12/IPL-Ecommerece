@@ -5,9 +5,9 @@ import Navbar from "../../components/Navbar/Navbar";
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react';
 import Lenis from "lenis";
-import {useLocation } from "react-router-dom";
+import {useLocation,useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
-import { asyncgetCart, asyncdeleteCart,asyncupdateCart } from "../../store/actions/asynccart";
+import { asyncgetCart, asyncdeleteCart,asyncupdateCart } from "../../store/actions/asyncCart";
 import { asyncgetkkrproduct } from "../../store/actions/asyncgetkkrproduct";
 import { asyncgetrcbproducts } from "../../store/actions/asyncgetrcbproducts";
 import { asyncmiproducts } from "../../store/actions/asyncmiproducts";
@@ -17,6 +17,7 @@ import { setTotalNumberOfItems } from "../../store/Reducers/totalNumberOfItems";
 function Cart() {
   const lenis = new Lenis();
   const location = useLocation();
+  const navigate=useNavigate();
   useEffect(() => {
     function raf(time) {
       lenis.raf(time);
@@ -179,7 +180,7 @@ function Cart() {
             </div>
             </div>
             </div>
-            <div className="cartitemprice">${product.price}</div>
+            <div className="cartitemprice">₹{product.price}</div>
           
 
           </div>
@@ -193,19 +194,19 @@ function Cart() {
     <div id="cartrighttext">Cart <span>Total</span></div>
     <div id="cartrighttotal">
       <div className="txt1">Subtotal({totalnumberofitems} items):</div>
-      <div className="txt2">${productsInCart.reduce((acc, product) => acc + product.price * (localCartItems.find(item => item.productId === product._id)?.quantity || 0), 0)}</div>
+      <div className="txt2">₹{productsInCart.reduce((acc, product) => acc + product.price * (localCartItems.find(item => item.productId === product._id)?.quantity || 0), 0)}</div>
     </div>
     <div id="cartrighttotal1">
       <div className="txt1">Shipping Fee</div>
-      <div className="txt2">$40</div>
+      <div className="txt2">₹40</div>
     </div>
     <div id="cartrighttotal2">
       <div className="txt3">Total</div>
-      <div className="txt2">${productsInCart.reduce((acc, product) => acc + product.price * (localCartItems.find(item => item.productId === product._id)?.quantity || 0), 0)+40}</div>
+      <div className="txt2">₹{productsInCart.reduce((acc, product) => acc + product.price * (localCartItems.find(item => item.productId === product._id)?.quantity || 0), 0)+40}</div>
     </div>
     <div id="cartrightbutton">
-      <button className="cartrightbutton">Proceed to Checkout</button>
-      <button className="cartrightbutton">Continue Shopping</button>
+      <button className="cartrightbutton" onClick={()=>navigate('/placeorder/checkout')}>Proceed to Checkout</button>
+      <button className="cartrightbutton" onClick={()=>navigate(-1)}>Continue Shopping</button>
     </div>
 
   </div>

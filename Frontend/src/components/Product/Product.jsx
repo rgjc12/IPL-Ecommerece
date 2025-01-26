@@ -1,8 +1,8 @@
 import React, {useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Product.css"
-function Product({id,name,price,image,num,handleAddToCart,userId,iplTeamNumber}) {
-  const currency='$';  
+function Product({id,name,price,image,num,handleAddToCart,userId,iplTeamNumber,handlebuynow}) {
+  const currency='Rs';  
   const backgrounds=["/Images/ChooseTeam/k0.png","/Images/ChooseTeam/r0.png","/Images/ChooseTeam/m0.png"];
   const colors=["#F2C029","#D8BC69","whitesmoke"];
   const textcolor=["#352350","#1d1d1d","#091D50"];
@@ -29,7 +29,7 @@ function Product({id,name,price,image,num,handleAddToCart,userId,iplTeamNumber})
           <button className="but1" style={{
             background:`${colors[num]}`,color:`${textcolor[num]}`}} onClick={()=>handleAddToCart(id,1,userId,iplTeamNumber)}>Add to Cart</button>
           <button className="but2"style={{
-            background:`${colors[num]}`,color:`${textcolor[num]}`}}>Buy Now</button>
+            background:`${colors[num]}`,color:`${textcolor[num]}`}} onClick={()=>handlebuynow(id,1,userId,iplTeamNumber)}>Buy Now</button>
         </div>
         </div>      
     </div>

@@ -8,7 +8,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,useNavigate } from "react-router-dom";
 import Navbar from '../../../components/Navbar/Navbar';
 import Product from "../../../components/Product/Product";
 import Trending from '../../../components/Trending/Trending';
@@ -21,6 +21,7 @@ import { setTotalNumberOfItems } from "../../../store/Reducers/totalNumberOfItem
 function MI() {
   const lenis = new Lenis();
   const location = useLocation();
+  const navigate=useNavigate();
   useEffect(() => {
     function raf(time) {
       lenis.raf(time);
@@ -70,7 +71,14 @@ function MI() {
     dispatch(setTotalNumberOfItems(totalnumberofitems));
     localStorage.setItem('totalNumberOfItems',totalnumberofitems);
   }
-  
+  const handlebuynow=(productId,quantity,userId,iplTeamNumber)=>{
+    dispatch(asyncaddToCart(productId,quantity,userId,iplTeamNumber)); 
+    dispatch(asyncgetCart(userId));    
+    totalnumberofitems+=quantity;
+    dispatch(setTotalNumberOfItems(totalnumberofitems));
+    localStorage.setItem('totalNumberOfItems',totalnumberofitems);
+    navigate('/placeorder/checkout');
+  }
 
 
  
@@ -109,7 +117,7 @@ function MI() {
           </Swiper>
         </div>
         <div id="mimid">
-        <Trending num={2}/>
+        <Trending num={2} handlebuynow={handlebuynow}/>
         </div>
         <div id="mibot">
         <div className="heading2">
@@ -117,7 +125,7 @@ function MI() {
           </div>
           <div id="mitems">          
           {miproducts.data && miproducts.data.map((item,idx)=>{
-            return <Product key={idx} id={item._id} name={item.name} image={item.imageUrl[0]} price={item.price} num={2} handleAddToCart={handleAddToCart} userId={userId} iplTeamNumber={iplTeamNumber} />  
+            return <Product key={idx} id={item._id} name={item.name} image={item.imageUrl[0]} price={item.price} num={2} handleAddToCart={handleAddToCart} userId={userId} iplTeamNumber={iplTeamNumber} handlebuynow={handlebuynow} />  
           })}
         </div>
         </div>

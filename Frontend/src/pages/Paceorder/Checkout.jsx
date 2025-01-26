@@ -4,7 +4,7 @@ import { asyncgetAddress, asyncaddAddress, asyncdeleteAddress } from '../../stor
 import { asyncgetkkrproduct } from "../../store/actions/asyncgetkkrproduct";
 import { asyncgetrcbproducts } from "../../store/actions/asyncgetrcbproducts";
 import { asyncmiproducts } from "../../store/actions/asyncmiproducts";
-import { asyncgetCart,asyncdeleteCartAll } from '../../store/actions/asynccart';
+import { asyncgetCart,asyncdeleteCartAll } from '../../store/actions/asyncCart';
 import { asyncCreateOrder } from '../../store/actions/asynccreateOrder';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
@@ -60,9 +60,14 @@ const Checkout = () => {
   });
   const [address1, setAddress1] = useState(null);
   const [cartitems,setCarts]=useState([]);
+  const [shipping,setShipping]=useState(0);
   
 
   const cart=useSelector(state=>state.cart);
+  console.log(cart);
+  
+  
+ 
   const [productsInCart, setProductsInCart] = useState([]);
   const [totalcost,settotalcost]=useState(0);
   const [totalnumberofitems,settotalnumberofitems]=useState(0);
@@ -161,15 +166,18 @@ useEffect(()=>{
             }
           });
    
-          setProductsInCart(products);          
+          setProductsInCart(products);
+          if(products.length>0){
+            setShipping(40);
+          }          
           let total = products.reduce((acc, product) => acc + product.price * (cartitems.find(item => item.productId === product._id)?.quantity || 0), 0);
           settotalcost(total);
           settotalnumberofitems(noofitems);
+          
 
     }
     
-},[cartitems, kkrproducts, rcbproducts, miproducts])
-
+},[cartitems, kkrproducts, rcbproducts, miproducts,shipping,totalcost,totalnumberofitems])
 
 
 
@@ -177,10 +185,21 @@ useEffect(()=>{
 
 
 const handlePay=async()=>{
+  if(totalnumberofitems===0){
+    toast.error("Please add items to cart!");
+    navigate("/chooseteam");
+    return;    
+  }
+  if(address1.address.length===0){
+    toast.error("Please add address!");    
+    return;
+  }
+ 
+
+  
   
   const address2={ addressId:address1.address[0]._id,address:address1.address[0].address,landmark:address1.address[0].landmark,pinCode:address1.address[0].pincode,phone:address1.address[0].phoneNumber};
-
-
+  
   const orderData={
     userId:userId,
     cartItems:cartitems.map(item=>({
@@ -193,17 +212,32 @@ const handlePay=async()=>{
     })),
     addressInfo:address2,
     orderStatus:"Pending",
-    paymentMethod:"PayPal",
+    paymentMethod:"COD",
     paymentStatus:"Pending",
     totalAmount:totalcost+40,
   }
-  console.log(orderData);
+  
   const response=await dispatch(asyncCreateOrder(orderData));
-  await dispatch(asyncdeleteCartAll(userId));  
-  setShipping(0);
+  await dispatch(asyncdeleteCartAll(userId));    
+  settotalnumberofitems(0);
   settotalcost(0);
-  console.log(response);
+  localStorage.setItem('cart',JSON.stringify(null));
+  setShipping(0);
+ 
+  if(response.success){
+    toast.success(response.message);
+    navigate(`/placeorder/orders`);
+  }
+  else{
+    toast.error(response.message);
+  }
 }
+console.log(totalnumberofitems);
+useEffect(()=>{
+  if(totalnumberofitems===0){
+    setShipping(0)
+  }
+},[totalnumberofitems,shipping])
 
 
 
@@ -299,11 +333,11 @@ const handlePay=async()=>{
       </div>
       <div id="checkoutright">
         
-        <div className="crhead">Cart <span>&nbsp;Total</span></div>
+          <div className="crhead">Cart <span>&nbsp;Total</span></div>
         <div className="crcost">
-          <div className="crsubtotal"><div className="txt15">Subtotal({totalnumberofitems} items)</div><div className="txt16">Rs{totalcost}</div></div>
-          <div className="crshipping"><div className="txt15">Shipping</div><div className="txt16">Rs40</div></div>
-          <div className="crtotal"><div className="txt17">Total</div><div className="txt18">Rs{`${totalcost+40}`}</div></div>
+          <div className="crsubtotal"><div className="txt15">Subtotal({totalnumberofitems} items)</div><div className="txt16">₹{totalcost}</div></div>
+          <div className="crshipping"><div className="txt15">Shipping</div><div className="txt16">₹{shipping}</div></div>
+          <div className="crtotal"><div className="txt17">Total</div><div className="txt18">₹{`${totalcost+shipping}`}</div></div>
           <div className="paybuttoncontainer">
           <button className="paybutton" onClick={handlePay}><img src="https://images.stripeassets.com/fzn2n1nzq965/HTTOloNPhisV9P4hlMPNA/cacf1bb88b9fc492dfad34378d844280/Stripe_icon_-_square.svg?q=80&w=1082"/>Pay With Stripe</button>          
           <button className="paybutton1" onClick={handlePay}><i className="ri-money-rupee-circle-line paybutton1icon"></i>Cash On Delivery</button>          

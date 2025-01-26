@@ -6,7 +6,8 @@ const orderSlice = createSlice({
     initialState:{
         approvalURL:null,
         isLoading:false,
-        orderId:null
+        orderId:null,
+        orders:null
     },
     reducers:{  
         setApprovalURL:(state,action)=>{
@@ -17,11 +18,15 @@ const orderSlice = createSlice({
         },
         setOrderId:(state,action)=>{
             state.orderId = action.payload;
+        },
+            getOrders:(state,action)=>{
+            state.orders = action.payload;
         }
+        
     },
    
     
 })
 
 export default orderSlice.reducer;
-export const {setApprovalURL,setIsLoading,setOrderId} = orderSlice.actions;
+export const {setApprovalURL,setIsLoading,setOrderId,getOrders} = orderSlice.actions;

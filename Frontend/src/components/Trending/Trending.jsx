@@ -5,7 +5,7 @@ import { asyncgetkkrproduct } from '../../store/actions/asyncgetkkrproduct';
 import { asyncgetrcbproducts } from '../../store/actions/asyncgetrcbproducts';
 import { asyncmiproducts } from '../../store/actions/asyncmiproducts';
 
-function Trending({ num }) {
+function Trending({ num, handlebuynow }) {
   const [trendingProducts, setTrendingProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const dispatch = useDispatch();
@@ -17,6 +17,7 @@ function Trending({ num }) {
   const kkrproducts = useSelector(state=>state.kkrproducts.kkrproducts);
   const rcbproducts = useSelector(state=>state.rcbproducts.rcbproducts);
   const miproducts = useSelector(state=>state.miproducts.miproducts);
+  const userId=useSelector(state=>state.userId.userId);
 
   const backgrounds = ["./Images/ChooseTeam/k4.webp", "./Images/ChooseTeam/r4.jpg", "./Images/ChooseTeam/m4.jpg"];
   const colors = ["#F2C029", "#D8BC69", "whitesmoke"];
@@ -84,7 +85,7 @@ function Trending({ num }) {
                 </div>
                 <div className="dboxb">
                     <div className="bl">Rs.{selectedProduct.price}</div>
-                    <div className="br"><button className="but10"style={{backgroundColor:`${textcolor[num]}`,color:`${colors[num]}`}}>BUY NOW</button></div>
+                    <div className="br"><button className="but10"style={{backgroundColor:`${textcolor[num]}`,color:`${colors[num]}`}} onClick={()=>handlebuynow(selectedProduct._id,1,userId,num)}>BUY NOW</button></div>
                 </div>
               </div>
                 <div className="desimg">
