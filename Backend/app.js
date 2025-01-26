@@ -48,7 +48,7 @@ app.use(cors({
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
     res.header('Access-Control-Allow-Credentials', 'true');
     if (req.method === 'OPTIONS') {
-      res.sendStatus(204); // No Content
+      res.sendStatus(204); 
     } else {
       next();
     }
