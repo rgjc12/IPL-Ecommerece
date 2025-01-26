@@ -25,28 +25,27 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-const allowedOrigins = [
-    "https://ipl-ecommerece-frontend.vercel.app", 
+
+app.use(cors({
+    origin: [
+      "https://ipl-ecommerece-frontend.vercel.app", 
       "https://ipl-ecommerece-admin.vercel.app",
       "http://localhost:5173",
       "http://localhost:5174"
-];
-
-app.use(cors({
-    withCredentials: true,
-    origin: function(origin, callback){
-      if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    }
+    ],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: true,
   }));
-
-
   
+  // Handle preflight requests
+  app.options('*', cors());
   
-
+  app.use((req, res, next) => {
+    console.log(`Request from origin: ${req.headers.origin}`);
+    console.log(`Request method: ${req.method}`);
+    next();
+  });
 
 app.get("/", (req, res) => {
     res.send("Welcome!");
