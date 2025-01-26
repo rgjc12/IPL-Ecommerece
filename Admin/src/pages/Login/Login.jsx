@@ -36,6 +36,7 @@ function Login({setToken,token}) {
             localStorage.setItem('token',response.data.token);
         } else {
             toast.error(response.data.msg);
+            
         }
     } catch (error) {
         console.log(error);
@@ -51,8 +52,7 @@ function Login({setToken,token}) {
 
   return (
     <>
-     <div id="loginmain">
-        {console.log(token)}
+     <div id="loginmain">       
       <div id="lleft">
      <video src={"/Video/v2.mp4"} autoPlay loop muted></video>
      
