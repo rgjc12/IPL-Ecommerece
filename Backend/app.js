@@ -38,14 +38,22 @@ app.use(cors({
     credentials: true,
   }));
   
-  // Handle preflight requests
+  
+  
   app.options('*', cors());
   
   app.use((req, res, next) => {
-    console.log(`Request from origin: ${req.headers.origin}`);
-    console.log(`Request method: ${req.method}`);
-    next();
+    res.header('Access-Control-Allow-Origin', req.headers.origin || '*');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    if (req.method === 'OPTIONS') {
+      res.sendStatus(204); // No Content
+    } else {
+      next();
+    }
   });
+  
 
 app.get("/", (req, res) => {
     res.send("Welcome!");
