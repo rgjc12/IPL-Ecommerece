@@ -9,10 +9,12 @@ import MI from './pages/Teams/MI/MI';
 import RCB from './pages/Teams/RCB/RCB';
 import Cart from './pages/Cart/Cart';
 import Placeorder from './pages/Paceorder/Placeorder';
+import Verify from './pages/Paceorder/Verify';
 import Contact from './pages/Contact/Contact';
 import EachProduct from './pages/EachProduct/EachProduct';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
         <Route path="/cart/:id" element={<Cart/>}/>
         <Route path="/placeorder/*" element={<Placeorder />} />s
         <Route path="/contact" element={<Contact/>}/>
+        <Route path="/verify" element={<Verify/>}/>
       </Routes>
       </div>
     </>

@@ -5,7 +5,7 @@ import { asyncgetkkrproduct } from "../../store/actions/asyncgetkkrproduct";
 import { asyncgetrcbproducts } from "../../store/actions/asyncgetrcbproducts";
 import { asyncmiproducts } from "../../store/actions/asyncmiproducts";
 import { asyncgetCart,asyncdeleteCartAll } from '../../store/actions/asyncCart';
-import { asyncCreateOrder } from '../../store/actions/asynccreateOrder';
+import { asyncCreateOrder,asyncStripePayment } from '../../store/actions/asynccreateOrder';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
@@ -14,26 +14,7 @@ import {useLocation } from "react-router-dom";
 
 const Checkout = () => {
 
-    const lenis = new Lenis();
-    const location = useLocation();
-    useEffect(() => {
-      function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-      }
-      requestAnimationFrame(raf);
-  
-      return () => lenis.destroy();
-    }, [lenis]);
-    useEffect(() => {
-      lenis.stop();
-      window.scrollTo(0, 0);
-      lenis.start();
-    }, [location]);
-  
-  
-
-
+   
 
 
   const dispatch = useDispatch(); 
@@ -232,7 +213,7 @@ const handlePay=async()=>{
     toast.error(response.message);
   }
 }
-console.log(totalnumberofitems);
+
 useEffect(()=>{
   if(totalnumberofitems===0){
     setShipping(0)
@@ -240,7 +221,38 @@ useEffect(()=>{
 },[totalnumberofitems,shipping])
 
 
+const handleStripePay=async()=>{
+  if(totalnumberofitems===0){
+    toast.error("Please add items to cart!");
+    navigate("/chooseteam");
+    return;    
+  }
+  if(address1.address.length===0){
+    toast.error("Please add address!");    
+    return;
+  }
+  const address2={ addressId:address1.address[0]._id,address:address1.address[0].address,landmark:address1.address[0].landmark,pinCode:address1.address[0].pincode,phone:address1.address[0].phoneNumber};
+  const orderData={
+    userId:userId,
+    cartItems:cartitems.map(item=>({
+      name:item.teamNumber===0?kkrproducts.kkrproducts.data.find(product=>product._id===item.productId).name:item.teamNumber===1?rcbproducts.rcbproducts.data.find(product=>product._id===item.productId).name:item.teamNumber===2?miproducts.miproducts.data.find(product=>product._id===item.productId).name:null,
+      productId:item.productId,      
+      quantity:item.quantity,
+      teamNumber:item.teamNumber,
+      imageUrl:item.teamNumber===0?kkrproducts.kkrproducts.data.find(product=>product._id===item.productId).imageUrl[0]:item.teamNumber===1?rcbproducts.rcbproducts.data.find(product=>product._id===item.productId).imageUrl[0]:item.teamNumber===2?miproducts.miproducts.data.find(product=>product._id===item.productId).imageUrl[0]:null,
+      price:item.teamNumber===0?kkrproducts.kkrproducts.data.find(product=>product._id===item.productId).price:item.teamNumber===1?rcbproducts.rcbproducts.data.find(product=>product._id===item.productId).price:item.teamNumber===2?miproducts.miproducts.data.find(product=>product._id===item.productId).price:null,
+    })),
+    addressInfo:address2,
+    orderStatus:"Pending",
+    paymentMethod:"Stripe",
+    paymentStatus:"Pending",
+    totalAmount:totalcost+40,
+  }
+  const response=await dispatch(asyncStripePayment(orderData));
+  
+  console.log(response);
 
+}
 
 
   return (
@@ -339,7 +351,7 @@ useEffect(()=>{
           <div className="crshipping"><div className="txt15">Shipping</div><div className="txt16">₹{shipping}</div></div>
           <div className="crtotal"><div className="txt17">Total</div><div className="txt18">₹{`${totalcost+shipping}`}</div></div>
           <div className="paybuttoncontainer">
-          <button className="paybutton" onClick={handlePay}><img src="https://images.stripeassets.com/fzn2n1nzq965/HTTOloNPhisV9P4hlMPNA/cacf1bb88b9fc492dfad34378d844280/Stripe_icon_-_square.svg?q=80&w=1082"/>Pay With Stripe</button>          
+          <button className="paybutton" onClick={handleStripePay}><img src="https://images.stripeassets.com/fzn2n1nzq965/HTTOloNPhisV9P4hlMPNA/cacf1bb88b9fc492dfad34378d844280/Stripe_icon_-_square.svg?q=80&w=1082"/>Pay With Stripe</button>          
           <button className="paybutton1" onClick={handlePay}><i className="ri-money-rupee-circle-line paybutton1icon"></i>Cash On Delivery</button>          
           </div>
         </div>

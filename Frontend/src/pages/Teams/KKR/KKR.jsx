@@ -3,7 +3,7 @@ import "./KKR.css";
 import gsap from "gsap";
 import { useGSAP } from '@gsap/react';
 import Lenis from "lenis";
-import {useLocation } from "react-router-dom";
+import {useLocation,useNavigate } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Navbar";
 import Product from "../../../components/Product/Product";
 import Trending from "../../../components/Trending/Trending";
@@ -14,7 +14,9 @@ import { asyncaddToCart,asyncgetCart } from "../../../store/actions/asyncCart";
 import { setTotalNumberOfItems } from "../../../store/Reducers/totalNumberOfItems";
 
 
+
 function KKR() {
+  const navigate=useNavigate();
   const lenis = new Lenis();
   const location = useLocation();
   const kt1 = useRef(null);
@@ -160,6 +162,14 @@ function KKR() {
     dispatch(setTotalNumberOfItems(totalnumberofitems));
     localStorage.setItem('totalNumberOfItems',totalnumberofitems);
   }
+  const handlebuynow=(productId,quantity,userId,iplTeamNumber)=>{
+    dispatch(asyncaddToCart(productId,quantity,userId,iplTeamNumber)); 
+    dispatch(asyncgetCart(userId));    
+    totalnumberofitems+=quantity;
+    dispatch(setTotalNumberOfItems(totalnumberofitems));
+    localStorage.setItem('totalNumberOfItems',totalnumberofitems);
+    navigate('/placeorder/checkout');
+  }
   
   
   
@@ -250,7 +260,7 @@ function KKR() {
               </div>
             </div>
         <div id="kmid">
-        <Trending num={0}/>
+        <Trending num={0} handlebuynow={handlebuynow}/>
         </div>
         <div id="kbot">
           <div className="heading">
@@ -258,7 +268,7 @@ function KKR() {
           </div>
         <div id="kitems">                    
           {kkrproducts.data && kkrproducts.data.map((item,idx)=>{
-            return <Product key={idx} id={item._id} name={item.name} image={item.imageUrl[0]} price={item.price} num={0} handleAddToCart={handleAddToCart} userId={userId} iplTeamNumber={iplTeamNumber} />  
+            return <Product key={idx} id={item._id} name={item.name} image={item.imageUrl[0]} price={item.price} num={0} handleAddToCart={handleAddToCart} userId={userId} iplTeamNumber={iplTeamNumber} handlebuynow={handlebuynow} />  
           })}
         </div>
         </div>

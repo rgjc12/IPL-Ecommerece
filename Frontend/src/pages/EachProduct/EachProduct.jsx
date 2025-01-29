@@ -12,6 +12,7 @@ import Navbar from '../../components/Navbar/Navbar';
 import Product from '../../components/Product/Product';
 import Footer from '../../components/Footer/Footer';
 import { asyncgetkkrproduct } from '../../store/actions/asyncgetkkrproduct';
+
 import { asyncgetrcbproducts } from '../../store/actions/asyncgetrcbproducts';
 import { asyncmiproducts } from '../../store/actions/asyncmiproducts';
 
@@ -38,57 +39,68 @@ function EachProduct() {
   const backgrounds = ["/Images/ChooseTeam/k4.webp", "/Images/ChooseTeam/r4.jpg", "/Images/ChooseTeam/m4.jpg"];
   const colors = ["#F2C029", "#D8BC69", "whitesmoke"];
   const textcolor = ["#352350", "#1d1d1d", "#091D50"];
-
-  const n = useSelector(state => state.num);
-  const id = useParams();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(asyncgetkkrproduct());
-  }, []);
-
-  useEffect(() => {
-    dispatch(asyncgetrcbproducts());
-  }, []);
-
-  useEffect(() => {
-    dispatch(asyncmiproducts());
-  }, []);
-
   const { kkrproducts } = useSelector(state => state.kkrproducts);
   const { rcbproducts } = useSelector(state => state.rcbproducts);
   const { miproducts } = useSelector(state => state.miproducts);
+  const n = useSelector(state => state.num);
+  
+  const id = useParams();
+  const dispatch = useDispatch();
+
+
+  
+
+  useEffect(() => {
+    dispatch(asyncgetkkrproduct());
+    dispatch(asyncgetrcbproducts());
+    dispatch(asyncmiproducts());    
+  }, [dispatch]);
+
+  
+
+
 
 
  
 
   const [prd, setprd] = useState([]);
   const [matchedObject, setmatchedObject] = useState(null);
+    
 
   
   useEffect(() => {
-   
-    if(Array.isArray(kkrproducts.data) && Array.isArray(rcbproducts.data) && Array.isArray(miproducts.data)){
-      
-      if(n.num==="0"){
-        setprd(kkrproducts.data);
-        setmatchedObject(kkrproducts.data.find(product => product._id === id.id));  
+    
+
+    if (kkrproducts?.data && rcbproducts?.data && miproducts?.data) {
+      let selectedProducts = [];
+      let selectedObject = null;
+  
+      console.log(typeof n.num);
+      if (n.num === "0"||n.num === 0) {
+        selectedProducts = kkrproducts.data;
+        selectedObject = kkrproducts.data.find(product => product._id === id.id);
+
+      } else if (n.num === "1"||n.num === 1) {
+        selectedProducts = rcbproducts.data;
+        selectedObject = rcbproducts.data.find(product => product._id === id.id);
+
+
+      } else if (n.num === "2"||n.num === 2) {
+        selectedProducts = miproducts.data;
+        selectedObject = miproducts.data.find(product => product._id === id.id);
       }
-      else if(n.num==="1"){
-        setprd(rcbproducts.data);
-        setmatchedObject(rcbproducts.data.find(product => product._id === id.id));
+
+  
+      // Only update state if the selected products have changed
+      if (selectedProducts.length > 0) {
+        setprd(selectedProducts);
+        setmatchedObject(selectedObject);
       }
-      else if(n.num==="2"){
-        setprd(miproducts.data);
-        setmatchedObject(miproducts.data.find(product => product._id === id.id));
-      }
-      
-      
     }
-   
-  }, [kkrproducts.data, rcbproducts.data, miproducts.data,n.num,id.id]);
+  }, [kkrproducts, rcbproducts, miproducts, n.num, id.id]);
   
   
+
  console.log(prd);
   
  

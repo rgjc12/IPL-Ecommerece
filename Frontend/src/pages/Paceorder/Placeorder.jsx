@@ -1,12 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "./Placeorder.css";
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import Orders from './Orders';
 import Checkout from './Checkout';
 import { Routes, Route, NavLink,Navigate } from 'react-router-dom';
+import Lenis from "lenis";
+import {useLocation } from "react-router-dom";
 
 function Placeorder() {
+  const lenis = new Lenis();
+  const location = useLocation();
+  useEffect(() => {
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => lenis.destroy();
+  }, [lenis]);
+  useEffect(() => {
+    lenis.stop();
+    window.scrollTo(0, 0);
+    lenis.start();
+  }, [location]);
+
+
+
+
 
   return (
     <>

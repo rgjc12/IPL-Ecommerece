@@ -20,16 +20,33 @@ export const asyncCreateOrder = (orderData) => async (dispatch,getState) => {
 
 export const asyncgetOrders = (userId) => async (dispatch,getState) => {
     const backendUrl = getState().backendUrl.backendUrl;
-    console.log("userId",userId);
-    console.log("backendUrl",backendUrl);
+   
     try{
-    const response = await axios.get(`${backendUrl}/api/order/userorders/${userId}`);
-    console.log("orders Response",response.data);
+    const response = await axios.get(`${backendUrl}/api/order/userorders/${userId}`);   
     dispatch(getOrders(response.data));
     return response.data;
 }
 catch(error){
     console.log("orders Error",error);
 }
+}
+export const asyncStripePayment=(orderData)=>async(dispatch,getState)=>{
+    const backendUrl=getState().backendUrl.backendUrl;
+    try{
+       const response=await axios.post(`${backendUrl}/api/order/create-order-stripe`,orderData);
+       console.log("Stripe Payment Response",response.data);
+       if(response.data.success){
+        const {session_url}=response.data;
+        console.log("session_url",session_url);
+        window.location.replace(session_url);
+       }
+       else{
+        toast.error(response.data.message);
+       }
+    }
+    catch(error){
+        console.log("Stripe Payment Error",error);
+        dispatch(setIsLoading(false));
+    }
 }
 

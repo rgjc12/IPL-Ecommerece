@@ -3,7 +3,7 @@ import './RCB.css';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import Lenis from 'lenis'
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation,useNavigate } from "react-router-dom";
 import Navbar from '../../../components/Navbar/Navbar'
 import Text from '../../../components/Text/Text';
 import Product from "../../../components/Product/Product";
@@ -15,7 +15,9 @@ import { asyncaddToCart,asyncgetCart } from "../../../store/actions/asyncCart";
 import { setTotalNumberOfItems } from "../../../store/Reducers/totalNumberOfItems";
 
 
+
 function RCB() {
+  const navigate=useNavigate();
   const lenis = new Lenis();
   const location = useLocation();
   useEffect(() => {
@@ -134,6 +136,20 @@ const userId=useSelector(state=>state.userId.userId);
     localStorage.setItem('totalNumberOfItems',totalnumberofitems);
   }
 
+
+
+
+  const handlebuynow=(productId,quantity,userId,iplTeamNumber)=>{
+    dispatch(asyncaddToCart(productId,quantity,userId,iplTeamNumber)); 
+    dispatch(asyncgetCart(userId));    
+    totalnumberofitems+=quantity;
+    dispatch(setTotalNumberOfItems(totalnumberofitems));
+    localStorage.setItem('totalNumberOfItems',totalnumberofitems);
+    navigate('/placeorder/checkout');
+  }
+  
+  
+
 const rcbproducts = useSelector(state=>state.rcbproducts.rcbproducts);
 
   return (
@@ -194,7 +210,7 @@ const rcbproducts = useSelector(state=>state.rcbproducts.rcbproducts);
       </div>
     </div>
     <div id="rmid">
-      <Trending num={1}/>
+      <Trending num={1} handlebuynow={handlebuynow}/>
     </div>
     <div id="rbot">
     <div className="heading1">
@@ -202,7 +218,7 @@ const rcbproducts = useSelector(state=>state.rcbproducts.rcbproducts);
           </div>
           <div id="ritems">          
           {rcbproducts.data && rcbproducts.data.map((item,idx)=>{
-            return <Product key={idx} id={item._id} name={item.name} image={item.imageUrl[0]} price={item.price} num={1} handleAddToCart={handleAddToCart} userId={userId} iplTeamNumber={iplTeamNumber} />  
+            return <Product key={idx} id={item._id} name={item.name} image={item.imageUrl[0]} price={item.price} num={1} handleAddToCart={handleAddToCart} userId={userId} iplTeamNumber={iplTeamNumber} handlebuynow={handlebuynow} />  
           })}
         </div>
     </div>

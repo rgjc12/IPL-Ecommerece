@@ -30,7 +30,11 @@ export const asyncgetCart = (userId) => async (dispatch,getState) => {
     try{
     const response=await axios.get(`${backendUrl}/api/cart/getcart/${userId}`,{
         headers:{Authorization: `Bearer ${token}`},withCredentials:true});
+        if(!response.data.cart){
+            return res.status(404).json({message:"No cart found for this user"});
+        }
         
+
     dispatch(getCart(response.data.cart.items));
     localStorage.setItem("cart",response.data.cart.items);   
 }

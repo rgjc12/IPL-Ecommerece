@@ -9,7 +9,7 @@ import cartReducer from './Reducers/cartReducer'
 import userIdReducer from './Reducers/userIdReducer'
 import totalNumberOfItemsReducer from './Reducers/totalNumberOfItems'
 import orderReducer from './Reducers/orderReducer'
-
+import reviewReducer from './Reducers/reviewReducer'
 export default configureStore({
   reducer: {    
     backendUrl: backendUrlReducer,
@@ -21,6 +21,7 @@ export default configureStore({
     cart: cartReducer,
     userId: userIdReducer,
     totalNumberOfItems: totalNumberOfItemsReducer,
-    order:orderReducer
+    order:orderReducer,
+    review:reviewReducer
   }
 })

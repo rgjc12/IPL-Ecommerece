@@ -11,6 +11,7 @@ import cartRouter from './Routes/cartRoute.js';
 import addressRouter from './Routes/addressRoute.js';
 import cloudinaryConfig from './Config/cloudinary.js';
 import orderRouter from './Routes/orderRoutes.js';
+import reviewRouter from './Routes/reviewRoutes.js';
 const app = express();
 const port = process.env.PORT || 8000;
 
@@ -66,6 +67,7 @@ app.use('/api/rcbproduct',rcbRouter);
 app.use('/api/cart',cartRouter);
 app.use('/api/address',addressRouter);
 app.use('/api/order',orderRouter);
+app.use('/api/review',reviewRouter);
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

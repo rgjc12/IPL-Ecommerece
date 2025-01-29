@@ -194,5 +194,20 @@
     font-family:ab;
     font-size:1vw;
     font-weight:600;
+    cursor:pointer;
 }
-
+.responsive-stars span {
+    font-size: 1.2vw !important; 
+    display: inline-block;
+  }
+  
+  .responsive-stars span svg {
+    width: 1em; 
+    height: 1em;
+  }
+  .eobottomitemratingreviewtextarea{
+    font-family:ab;
+    font-size:1vw;
+    font-weight:500;
+    
+  }
