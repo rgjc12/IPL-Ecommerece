@@ -39,8 +39,8 @@ const createReview = async (req, res) => {
 
 const getReviews=async(req,res)=>{
     try{
-        const productId=req.body;
-        const reviews=await Review.find({productId});
+        const productId=req.params.productId;        
+        const reviews=await Review.find({productId});       
         if(!reviews){
             return res.status(404).json({message:"No reviews found for this product"});
         }

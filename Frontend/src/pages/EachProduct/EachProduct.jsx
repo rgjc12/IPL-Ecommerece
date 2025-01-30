@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import './EachProduct.css';
 import Lenis from "lenis";
@@ -6,19 +6,25 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Autoplay, Pagination } from 'swiper/modules';
-import { useLocation } from "react-router-dom";
+import { useLocation,useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import Navbar from '../../components/Navbar/Navbar';
 import Product from '../../components/Product/Product';
 import Footer from '../../components/Footer/Footer';
 import { asyncgetkkrproduct } from '../../store/actions/asyncgetkkrproduct';
-
 import { asyncgetrcbproducts } from '../../store/actions/asyncgetrcbproducts';
 import { asyncmiproducts } from '../../store/actions/asyncmiproducts';
+import { asyncgetReviews } from '../../store/actions/asyncReview';
+import { asyncaddToCart,asyncgetCart } from '../../store/actions/asyncCart';
+import { setTotalNumberOfItems } from '../../store/Reducers/totalNumberOfItems';
+import ReactStars from "react-stars";
+
+
 
 function EachProduct() {
   const lenis = new Lenis();
   const location = useLocation();
+  const navigate=useNavigate();
 
   useEffect(() => {
     function raf(time) {
@@ -43,8 +49,11 @@ function EachProduct() {
   const { rcbproducts } = useSelector(state => state.rcbproducts);
   const { miproducts } = useSelector(state => state.miproducts);
   const n = useSelector(state => state.num);
+  const {review}=useSelector(state=>state.review);
+  const[reviews,setreviews]=useState([]);
+
   
-  const id = useParams();
+  const id = useParams(); 
   const dispatch = useDispatch();
 
 
@@ -54,7 +63,11 @@ function EachProduct() {
     dispatch(asyncgetkkrproduct());
     dispatch(asyncgetrcbproducts());
     dispatch(asyncmiproducts());    
-  }, [dispatch]);
+     dispatch(asyncgetReviews(id.id)).then((res)=>{
+      setreviews(res);
+     });
+     
+  }, [dispatch,id.id,review]);
 
   
 
@@ -73,9 +86,8 @@ function EachProduct() {
 
     if (kkrproducts?.data && rcbproducts?.data && miproducts?.data) {
       let selectedProducts = [];
-      let selectedObject = null;
-  
-      console.log(typeof n.num);
+      let selectedObject = null;  
+      
       if (n.num === "0"||n.num === 0) {
         selectedProducts = kkrproducts.data;
         selectedObject = kkrproducts.data.find(product => product._id === id.id);
@@ -101,7 +113,6 @@ function EachProduct() {
   
   
 
- console.log(prd);
   
  
  
@@ -115,10 +126,70 @@ function EachProduct() {
   const size = ["S", "M", "L", "XL", "XXL"];
   const [sizeindex, setsizeindex] = useState(0);
 
+
+
+
+  const avgRating = useMemo(() => {
+    if (reviews.length === 0) return 5; // Default value if no reviews
+    const total = reviews.reduce((acc, review) => acc + (review.ratings || 5), 0);
+    return total / reviews.length;
+  }, [reviews]);
+
+
+
+
+
+
+
+   const iplTeamNumber=useSelector(state=>state.num.num);
+  const token=useSelector(state=>state.token.token);
+  const quantity=1;
+  const userId=useSelector(state=>state.userId.userId);
+    const cart = useSelector(state => state.cart.cart);
+
+
+
+    let [totalnumberofitems,settotalnumberofitems]=useState(0);
+  useEffect(()=>{
+    dispatch(asyncgetCart(userId));    
+  },[userId])
+  
+
+  useEffect(() => {
+    if (Array.isArray(cart)) {
+      let total = cart.reduce((acc, item) => acc + item.quantity, 0);
+      settotalnumberofitems(total);
+      dispatch(setTotalNumberOfItems(total));
+      localStorage.setItem('totalNumberOfItems', total);
+    }
+  }, [cart]);
+  
+
+
+
+     const handleAddToCart = (productId,quantity,userId,iplTeamNumber) => {
+    dispatch(asyncaddToCart(productId,quantity,userId,iplTeamNumber)); 
+    dispatch(asyncgetCart(userId));    
+    totalnumberofitems+=quantity;
+    dispatch(setTotalNumberOfItems(totalnumberofitems));
+    localStorage.setItem('totalNumberOfItems',totalnumberofitems);
+  }
+  const handlebuynow=(productId,quantity,userId,iplTeamNumber)=>{
+    dispatch(asyncaddToCart(productId,quantity,userId,iplTeamNumber)); 
+    dispatch(asyncgetCart(userId));    
+    totalnumberofitems+=quantity;
+    dispatch(setTotalNumberOfItems(totalnumberofitems));
+    localStorage.setItem('totalNumberOfItems',totalnumberofitems);
+    navigate('/placeorder/checkout');
+  }
+  
+
+
+
   return (
     <>
       <div id='eachproduct'>
-        <Navbar num={n.num} />
+        <Navbar num={n.num} totalnumberofitems={totalnumberofitems} />
         <div id="eachpro" style={{ backgroundImage: `url(${backgrounds[n.num]})` }}>
           <div id="allpics">
             {matchedObject && matchedObject.imageUrl.map((image, index) =>
@@ -136,7 +207,17 @@ function EachProduct() {
             <div id="productdetails">
               <div id="productname" style={{ color: textcolor[n.num] }}>{matchedObject && matchedObject.name}</div>
               <div id="productdescription" style={{ color: textcolor[n.num] }}>{matchedObject && matchedObject.description}</div>
-              <div id="productprice" style={{ color: textcolor[n.num] }}>$. {matchedObject && matchedObject.price}</div>
+              <div id="productrating">
+                <ReactStars
+  count={5}
+  value={avgRating} 
+  className="responsive-stars"
+  color2={`${textcolor[n.num]}`}
+   // Use productId
+/>
+              </div>
+              <div id="productprice" style={{ color: textcolor[n.num] }}>Rs. {matchedObject && matchedObject.price}</div>
+              
               <div id="sizes">
                 {size.map((size, index) => (
                   <button
@@ -150,11 +231,36 @@ function EachProduct() {
                 ))}
               </div>
               <div id="eachbottom">
-                <button className="but" style={{ backgroundColor: textcolor[n.num] }}>Add to Cart</button>
-                <button className="but" style={{ backgroundColor: textcolor[n.num] }}>Buy Now</button>
+                <button className="but" style={{ backgroundColor: textcolor[n.num] }} onClick={()=>handleAddToCart(matchedObject._id,quantity,userId,iplTeamNumber)}>Add to Cart</button>
+                <button className="but" style={{ backgroundColor: textcolor[n.num] }} onClick={()=>handlebuynow(matchedObject._id,quantity,userId,iplTeamNumber)}>Buy Now</button>
               </div>
             </div>
           </div>
+        </div>
+        <div id="allreviews">
+          <div id="reviewheading" style={{color:textcolor[n.num]}}>Top Reviews</div>
+          
+          {reviews.length>0 && reviews.map((review,index)=>(
+            <div key={index} id="eachreview">
+              <div className="reviewtop">
+                <img src="/Images/i1.png"/>
+              <div id="reviewer">&nbsp;{review.userName}</div> 
+              <div className="verified">Verified Purchase</div>            
+              </div>
+              <div className="reviewrating">
+              <ReactStars
+  count={5}
+  value={review.ratings||5} 
+  className="responsive-stars"
+  color2={"#ffd700"}
+   
+/>
+              </div>
+              
+              <div id="reviewtext">{review.text}</div>
+            </div>
+          ))}
+
         </div>
         <div id="similar-products">
   <div className="similar-products-heading" style={{color:textcolor[n.num]}}>Similar Products</div>
@@ -176,6 +282,9 @@ function EachProduct() {
               price={product.price}
               image={product.imageUrl[0]}
               num={n.num}
+              handlebuynow={handlebuynow}
+              handleAddToCart={handleAddToCart}
+              userId={userId} iplTeamNumber={iplTeamNumber}
             />
           </SwiperSlide>
         ))}

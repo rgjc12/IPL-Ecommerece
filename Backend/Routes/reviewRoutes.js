@@ -5,7 +5,7 @@ import protect from "../Middleware/protect.js";
 const reviewRouter=express.Router();
 
 reviewRouter.post('/addreview',protect,createReview);
-reviewRouter.get('/getreview',protect,getReviews);
+reviewRouter.get('/getreview/:productId',getReviews);
 
 export default reviewRouter;
 

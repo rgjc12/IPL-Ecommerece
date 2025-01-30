@@ -141,4 +141,56 @@
     align-items: center;    
   }
   
-  
+  .allreviews{
+    width:97vw;
+    margin-left: 3vw;
+    height:auto;
+  }
+  #reviewheading{
+    font-size: 6vw;
+    font-family: xx;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2vw;
+  }
+  #eachreview{  
+    min-height: 10vw;
+    width:50vw;   
+    margin-left: 25vw;    
+    border-radius: 0.5vw;
+    margin-bottom: 1vw;   
+    
+  }
+  .reviewtop{
+    display: flex;
+    align-items: center;
+    font-size: 2vw;
+    font-family: ab;
+    font-weight: 600;
+  }
+  .reviewtop img{
+    height: 3vw;
+    width: 3vw;
+    border-radius: 50%;
+    overflow: hidden;
+
+  }
+  #reviewtext{
+    font-size: 1.25vw;
+    font-family: ab;
+    font-weight: 500;    
+  }
+
+  .verified{
+    font-size: 1.25vw;
+    color:green;
+    margin-left: 1vw;
+    font-family: ab;
+    font-weight: 700;
+    border-left: 2px solid rgb(185, 183, 183);
+    padding-left: 1vw;
+  }
+
+#productrating{
+  margin-left: 1vw;
+}

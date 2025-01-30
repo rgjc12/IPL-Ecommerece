@@ -34,22 +34,37 @@ const Orders = () => {
   const handleRatingChange = (productId, newRating) => {
     setRatings((prev) => ({ ...prev, [productId]: newRating }));
   };
-
   const handleSubmitReview = async (userId, productId) => {
+    const rating = ratings[productId] || 0; // Retrieve rating for the specific productId
+    const text = texts[productId] || ""; // Retrieve text for the specific productId
+    console.log(userId,productId,rating,text);
+  
+    if (rating === 0) {
+      toast.error("Please provide a rating before submitting the review!");
+      return;
+    }
+  
+    if (text.trim() === "") {
+      toast.error("Please write a review before submitting!");
+      return;
+    }
+  
+    console.log("Submitting Review for:", userId, productId, rating, text);
+  
     try {
-      const rating = ratings[productId] || 0;
-      const text = texts[productId] || "";
-      console.log(userId, productId, rating, text);
-      dispatch(asyncaddReview(userId, productId, rating, text));
+      await dispatch(asyncaddReview(userId, productId, rating, text));
       toast.success("Review submitted successfully!");
+  
+      // Reset state after successful submission
       setRatings((prev) => ({ ...prev, [productId]: 0 }));
       setTexts((prev) => ({ ...prev, [productId]: "" }));
     } catch (error) {
-      console.error(error);
+      console.error("Error submitting review:", error);
       toast.error("Error submitting review!");
     }
   };
-
+  
+  
   return (
     <div className="ordersmain">
       <div className="head">Order History</div>
@@ -109,28 +124,28 @@ const Orders = () => {
                       <div className="eobottomitemrating">
                         <div className="eobottomitemratinghead">Ratings</div>
                         <div className="eobottomitemratingstars">
-                          <ReactStars
-                            count={5}
-                            value={ratings[item._id] || 0}
-                            className="responsive-stars"
-                            color2={"#ffd700"}
-                            onChange={(newRating) => handleRatingChange(item._id, newRating)}
-                          />
+                        <ReactStars
+  count={5}
+  value={ratings[item.productId] || 0}  // Use productId
+  className="responsive-stars"
+  color2={"#ffd700"}
+  onChange={(newRating) => handleRatingChange(item.productId, newRating)} // Use productId
+/>
                         </div>
                         <div className="eobottomitemratingreview">
                           <form className="eobottomitemratingreviewform">
-                            <textarea
-                              className="eobottomitemratingreviewtextarea"
-                              placeholder="Write a review..."
-                              onChange={(e) =>
-                                setTexts((prev) => ({ ...prev, [item._id]: e.target.value }))
-                              }
-                            />
+                          <textarea
+  className="eobottomitemratingreviewtextarea"
+  placeholder="Write a review..."
+  value={texts[item.productId] || ""} // Ensure state is properly managed
+  onChange={(e) =>
+    setTexts((prev) => ({ ...prev, [item.productId]: e.target.value })) // Use productId
+  }
+/>
                             <button
                               type="button"
                               className="eobottomitemratingreviewbtn"
-                              onClick={() => handleSubmitReview(userId, item._id)}
-                            >
+                              onClick={() => handleSubmitReview(userId, item.productId)}>
                               Submit
                             </button>
                           </form>
