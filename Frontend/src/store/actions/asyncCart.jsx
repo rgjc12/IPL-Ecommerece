@@ -14,8 +14,7 @@ export const asyncaddToCart = (productId,quantity,userId,iplTeamNumber) => async
                 Authorization: `Bearer ${token}`
             },
             withCredentials:true,
-        });
-        console.log(response.data);
+        });        
         dispatch(addToCart(response.data));
     }
 catch(error){
@@ -46,13 +45,13 @@ catch(error){
 export const asyncdeleteCart = (userId,productId) => async (dispatch,getState) => {
     const backendUrl = getState().backendUrl.backendUrl;
     const token = getState().token.token;
-    console.log("userId=",userId," productId=",productId);
+   
     try{
         const response=await axios.delete(`${backendUrl}/api/cart/deletecart/${userId}/${productId}`,{
             headers:{Authorization: `Bearer ${token}`},withCredentials:true});
         dispatch(deleteCart(response.data.cart));
         dispatch(asyncgetCart(userId));
-        console.log(response.data.cart);
+       
         localStorage.setItem("cart",response.data.cart);
     }
     catch(error){

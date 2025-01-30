@@ -54,8 +54,7 @@ function Cart() {
 
   const iplTeamNumber=localStorage.getItem('iplTeamNumber');
   const num=useSelector(state=>state.num.num);
-  console.log(num);
-
+  
   let kkrproducts=useSelector(state=>state.kkrproducts.kkrproducts);
   let rcbproducts=useSelector(state=>state.rcbproducts.rcbproducts);
   let miproducts=useSelector(state=>state.miproducts.miproducts); 
@@ -138,8 +137,7 @@ function Cart() {
     .catch(error => console.error("Error updating item in cart:", error));
   }
 
-  console.log(productsInCart);
-  console.log(localCartItems);
+  
 
   return <>
   <Navbar num={num} totalnumberofitems={totalnumberofitems}/>

@@ -133,9 +133,12 @@ const adminLogin = async (req, res) => {
 
 const updateTeam = async (req, res) => {
     try {     
-        
-       let email = decodeToken(extractToken(req.headers.cookie));       
+       
+
+       let email = decodeToken(req.headers.authorization.split(" ")[1]);   
+       
         const { iplTeamNumber } = req.body;
+
 
         if (![0, 1, 2].includes(iplTeamNumber)) {
             return res.status(400).json({ success: false, msg: 'Invalid team number' });

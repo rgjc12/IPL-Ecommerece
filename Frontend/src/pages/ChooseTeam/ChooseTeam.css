@@ -9,7 +9,8 @@ html {
 #choosetop{
     height:69vw;
     width:100vw;
-    background-color: #071026;
+    background: rgb(7,16,38);
+    background: linear-gradient(180deg, rgba(7,16,38,1) 9%, rgba(22,26,66,1) 45%, rgba(32,39,84,1) 85%, rgba(142,74,156,1) 100%);
     position: relative;
 }
 #choosetop img{
@@ -35,9 +36,9 @@ html {
 {
     height:9vw;
     width:100%;
-    font-family: xx;
-    font-size: 7.3vw;
-    font-weight: 600;
+    font-family:sg;
+    font-size: 7.5vw;
+    font-weight: 500;
     color:red;    
     display: flex;
     align-items: center;
@@ -51,10 +52,11 @@ html {
 #t2i{
     height:9vw;
     width:100%;
-    font-family: xx;
-    font-size: 7.3vw;
+    font-family: sg;
+    font-size: 10.2vw;
     font-weight: 600;
-    color:red;    
+    color:transparent;   
+    -webkit-text-stroke: 2px whitesmoke;   
     display: flex;
     align-items: center;
     justify-content: center;   
@@ -62,6 +64,7 @@ html {
     padding-top: 0;
     margin-bottom: 0;
     padding-bottom: 0;
+
     overflow: hidden;
 }
 

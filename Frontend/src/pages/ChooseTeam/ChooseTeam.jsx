@@ -62,8 +62,10 @@ function ChooseTeam() {
     setLoading(true);
    
     try {
+      
       await axios.post(
         `${backendUrl}/api/users/updateteam`,
+
 
         { iplTeamNumber: teamNumber},
         {
@@ -95,7 +97,7 @@ function ChooseTeam() {
           <div id="chtopover">
             <div id="chtext">
               <div id="t1i" ref={t1i}><span>SELECT</span><span>&nbsp;YOUR</span></div>
-              <div id="t2i" ref={t2i}><span>FAVOURITE</span><span>&nbsp;TEAM</span></div>
+              <div id="t2i" ref={t2i}><span>&nbsp;TEAM</span></div>
             </div>
             <div id="chcards">
               <Swiper

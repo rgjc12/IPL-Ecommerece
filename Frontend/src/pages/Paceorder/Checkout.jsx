@@ -45,7 +45,7 @@ const Checkout = () => {
   
 
   const cart=useSelector(state=>state.cart);
-  console.log(cart);
+  
   
   
  
