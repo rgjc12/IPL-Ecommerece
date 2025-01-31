@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useSearchParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 import axios from 'axios';
 import { asyncdeleteCartAll } from '../../store/actions/asyncCart';
 
 
 
 
-
 const Verify = () => {
+    const dispatch=useDispatch();
     const navigate=useNavigate();
     const userId=useSelector(state=>state.userId.userId);
     const [searchparams,setSearchParams]=useSearchParams();
@@ -18,11 +18,13 @@ const Verify = () => {
     const orderId=searchparams.get("orderId");
 
 
+
     const verifyStripeOrder=async()=>{
         const backendUrl=import.meta.env.VITE_BACKEND;
-        console.log(backendUrl);
+        console.log(backendUrl,userId);
 
         
+
         try{
             const response=await axios.post(`${backendUrl}/api/order/verify-stripe-order`,{orderId,success,userId});
             if(response.data.success){

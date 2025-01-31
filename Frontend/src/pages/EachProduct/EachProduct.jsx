@@ -213,6 +213,7 @@ function EachProduct() {
   value={avgRating} 
   className="responsive-stars"
   color2={`${textcolor[n.num]}`}
+  edit={false}
    // Use productId
 />
               </div>
@@ -253,7 +254,7 @@ function EachProduct() {
   value={review.ratings||5} 
   className="responsive-stars"
   color2={"#ffd700"}
-   
+  edit={false}
 />
               </div>
               

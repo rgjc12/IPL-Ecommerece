@@ -77,6 +77,7 @@ export const asyncupdateCart = (userId,productId,quantity) => async (dispatch,ge
 export const asyncdeleteCartAll = (userId) => async (dispatch,getState) => {
     const backendUrl = getState().backendUrl.backendUrl;
     const token = getState().token.token;
+    console.log(userId,backendUrl,token);
     try{
         const response=await axios.delete(`${backendUrl}/api/cart/deletecartall/${userId}`,{headers:{Authorization: `Bearer ${token}`},withCredentials:true});
         dispatch(deleteCartAll(response.data.cart));

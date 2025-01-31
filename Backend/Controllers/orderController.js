@@ -32,8 +32,7 @@ const createOrder= async (req, res) => {
 const createOrderStripe = async (req, res) => {
     try {
         const { userId, cartItems, addressInfo, totalAmount } = req.body;
-        const { origin } = req.headers;
-        console.log(origin);
+        const { origin } = req.headers;       
 
         // Prepare order data
         const orderData = {
@@ -91,16 +90,21 @@ const createOrderStripe = async (req, res) => {
 };
 const verifyStripeOrder= async (req, res) => {
     const {orderId,success,userId}=req.body;
+    console.log(orderId,success,userId);
     try{
         if(success==="true"){
-            await Order.findByIdAndUpdate(orderId,{paymentStatus:"Paid"});            
+            await Order.findByIdAndUpdate(orderId,{paymentStatus:"Paid"});  
+            console.log("Order Paid Successfully!");     
             res.status(200).json({success:true,message:"Order Paid Successfully!"});
         }else{
             await Order.findByIdAndDelete(orderId);
+            console.log("Order Failed!");
             res.status(200).json({success:false,message:"Order Failed!"});
         }
+
     }catch(error){
         console.error(error);
+        console.log("Error Verifying Order!");
         res.status(500).json({success:false,message:"Error Verifying Order!"});
     }
 
@@ -115,7 +119,7 @@ const userOrders = async (req, res) => {
         if (orders.length === 0) {
             return res.status(404).json({ success: false, message: "No orders found for this user!" });
         }
-        console.log(orders);
+        
         res.status(200).json({ success: true, orders });
     } catch (error) {
         console.error(error);

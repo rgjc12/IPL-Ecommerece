@@ -10,7 +10,7 @@ import { setToken } from '../../store/Reducers/tokenReducer';
 gsap.registerPlugin(useGSAP);
 
 function Navbar({ num , totalnumberofitems }) {
-  console.log(num);
+  
   const logos = ["/Images/kkr_logo.png", "/Images/rcb-logo.png","/Images/mi_logo.avif","/Images/iplzone.png"];
   const backgrounds = [
 
@@ -120,7 +120,7 @@ const navigate = useNavigate();
     toast.error("Server Error!");
   }
 }
-console.log(num);
+
 
 
 

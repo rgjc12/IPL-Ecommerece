@@ -82,7 +82,7 @@ const Orders = () => {
                   <div className="ettotal">
                     <div className="ed">Total</div>
                     <div className="etdtime">
-                      Rs.{order.paymentMethod === "COD" ? order.totalAmount : order.totalAmount * 85}
+                      Rs.{order.paymentMethod === "COD" ? order.totalAmount : (order.totalAmount * 85).toFixed(0)}
                     </div>
                   </div>
                   <div className="epayment">
