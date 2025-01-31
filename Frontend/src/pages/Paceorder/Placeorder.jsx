@@ -32,7 +32,7 @@ function Placeorder() {
 
   return (
     <>
-      <Navbar num={0} totalnumberofitems={0} />
+      <Navbar num={3} totalnumberofitems={0} />
 
       <div id="placeorderbuttons">
         <NavLink to="/placeorder/orders">
