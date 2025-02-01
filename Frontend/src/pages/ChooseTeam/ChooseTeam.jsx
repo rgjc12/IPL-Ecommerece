@@ -44,6 +44,8 @@ function ChooseTeam() {
   const t2i = useRef(null);
 
   useGSAP(() => {
+    const mm = gsap.matchMedia();
+    mm.add("(min-width: 490px)", () => {
     const tl = gsap.timeline();
     tl.from(t1i.current.querySelectorAll('span'), {
       y: "8vw",
@@ -56,6 +58,22 @@ function ChooseTeam() {
       ease: "expo.out",
       stagger: 0.2,
     });
+  });
+  mm.add("(max-width: 490px)", () => {
+    const tl = gsap.timeline();
+    tl.from(t1i.current.querySelectorAll('span'), {
+      y: "12vw",
+      duration: 1.35,
+      ease: "expo.out",
+      stagger: 0.2,
+    }).from(t2i.current.querySelectorAll('span'), {
+      y: "15vw",
+      duration: 1.35,
+      ease: "expo.out",
+      stagger: 0.2,
+    });
+  });
+
   });
 
   const handleTeamChoice = async (teamNumber) => {
@@ -93,7 +111,9 @@ function ChooseTeam() {
     <>
       <div id="choosemain">
         <div id="choosetop">
-          <img src="./Images/ipl.svg" />
+          <div className="iplchoosetopimg">
+            <img src="./Images/ipl.svg" />
+          </div>
           <div id="chtopover">
             <div id="chtext">
               <div id="t1i" ref={t1i}><span>SELECT</span><span>&nbsp;YOUR</span></div>
@@ -109,6 +129,7 @@ function ChooseTeam() {
                 }}
                 modules={[Pagination]}
                 className="mySwiper5"
+                
               >
                 <SwiperSlide>
                   <div id="card1">
