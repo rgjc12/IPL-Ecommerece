@@ -541,7 +541,7 @@ html {
 #c3 img{
   position: absolute;
   top:0vw;
-  left:-4.59vw;
+  left:-4.2vw;
   height:24vh;
   width:auto;
   object-fit: cover;     
@@ -623,7 +623,7 @@ html {
 }
 #but3{
   margin-top: 1vw;
-  margin-left: 7vw;
+  margin-left: 10vw;
   height:6vw;
   border-radius: 10px;
   width:18vw;

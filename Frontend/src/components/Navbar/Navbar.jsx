@@ -178,6 +178,42 @@ const navigate = useNavigate();
         </div>
         </NavLink>
         </div>
+        <div id="navformobile" style={{color:"whitesmoke"}}>
+        <div id="navformobile-l">
+        <i className="ri-menu-2-line"></i>
+        </div>
+        </div>
+        <div id="navsidemenu">
+        <i className="ri-close-circle-fill" id="close"></i>
+        <div id="in">
+        
+        <NavLink to="/login" onClick={handleLogout} style={{ textDecoration: "none",color:"whitesmoke"}}>
+       <div className="navsisemenu1"><i className="ri-account-circle-fill"></i>&nbsp;Log Out       
+        </div>
+        </NavLink>
+
+
+
+        <NavLink to={`/placeorder/orders`}style={{ textDecoration: "none",color:"whitesmoke"}}>
+        <div className='navsisemenu1'><i className="ri-shopping-bag-4-fill"></i>&nbsp;Orders       
+        
+        </div>
+        </NavLink>
+
+
+
+        <NavLink to={`/cart/${userId}`}style={{ textDecoration: "none",color:"whitesmoke"}}>
+        <div className='navsisemenu1'><div id="nrrtextxx"><i className="ri-shopping-bag-4-fill"></i>&nbsp;Cart&nbsp;
+        <div id="cartcircle1" style={{ background: cartbgSrc,color:cacolorSrc,borderRadius:"6px",padding:"1.2px"}}>{totalnumberofitems}</div></div>
+       
+        </div>
+        </NavLink>
+
+
+        
+        </div>
+        
+        </div>
       </div>
     </div>
   );
