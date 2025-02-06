@@ -31,20 +31,26 @@ function Footer() {
   
       
       useGSAP(()=>{
+        const mm=gsap.matchMedia();
+        mm.add("(min-width: 490px)",()=>{
         gsap.to(p12Ref.current, {
           transform:`rotateX(${yval/20}deg) rotateY(${xval/15}deg)`,
           ease: "power4.out",
           duration:1.99
         });
+      });
       },[xval,yval]);  
+
 
       useGSAP(()=>{
         const links=document.querySelectorAll(".link a");
         const socials=document.querySelectorAll("#socials p");
-      
+        const mm=gsap.matchMedia();
+        mm.add("(min-width: 490px)",()=>{
         gsap.to(links,{
           transform:"translateY(0)",
           opacity:1,
+
           stagger:0.1,
           ease:"hop.out",
           duration:1.99,
@@ -96,7 +102,9 @@ function Footer() {
           scrub:true,
          
         }
+
       })
+    })
     })
       
     

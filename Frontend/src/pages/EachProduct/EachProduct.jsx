@@ -267,7 +267,13 @@ function EachProduct() {
   <div className="similar-products-heading" style={{color:textcolor[n.num]}}>Similar Products</div>
   <div className="similar-products-container">
     <Swiper
-      slidesPerView={3}
+      breakpoints={{
+        490: {
+          slidesPerView: 3, // Show 3 slides for screens above 490px
+        },
+        0: {
+          slidesPerView: 2, // Show 2 slides for screens below 490px
+        },}}
       spaceBetween={10}
       pagination={{ clickable: true }}
       autoplay={{ delay: 3000, disableOnInteraction: false }}

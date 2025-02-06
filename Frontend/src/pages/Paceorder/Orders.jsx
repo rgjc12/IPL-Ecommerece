@@ -31,39 +31,42 @@ const Orders = () => {
     );
   }
 
-  const handleRatingChange = (productId, newRating) => {
-    setRatings((prev) => ({ ...prev, [productId]: newRating }));
-  };
-  const handleSubmitReview = async (userId, productId) => {
-    const rating = ratings[productId] || 0; // Retrieve rating for the specific productId
-    const text = texts[productId] || ""; // Retrieve text for the specific productId
-    console.log(userId,productId,rating,text);
-  
-    if (rating === 0) {
-      toast.error("Please provide a rating before submitting the review!");
-      return;
-    }
-  
-    if (text.trim() === "") {
-      toast.error("Please write a review before submitting!");
-      return;
-    }
-  
-    console.log("Submitting Review for:", userId, productId, rating, text);
-  
-    try {
-      await dispatch(asyncaddReview(userId, productId, rating, text));
-      toast.success("Review submitted successfully!");
-  
-      // Reset state after successful submission
-      setRatings((prev) => ({ ...prev, [productId]: 0 }));
-      setTexts((prev) => ({ ...prev, [productId]: "" }));
-    } catch (error) {
-      console.error("Error submitting review:", error);
-      toast.error("Error submitting review!");
-    }
-  };
-  
+ const handleRatingChange = (orderId, productId, newRating) => {
+  setRatings((prev) => ({
+    ...prev,
+    [`${orderId}-${productId}`]: newRating, // Use unique key combining orderId and productId
+  }));
+};
+const handleSubmitReview = async (userId, orderId, productId) => {
+  const key = `${orderId}-${productId}`;
+  const rating = ratings[key] || 0;
+  const text = texts[key] || "";
+
+  if (rating === 0) {
+    toast.error("Please provide a rating before submitting the review!");
+    return;
+  }
+
+  if (text.trim() === "") {
+    toast.error("Please write a review before submitting!");
+    return;
+  }
+
+  console.log("Submitting Review for:", userId, orderId, productId, rating, text);
+
+  try {
+    await dispatch(asyncaddReview(userId, productId, rating, text));
+    toast.success("Review submitted successfully!");
+
+    // Reset state after successful submission
+    setRatings((prev) => ({ ...prev, [key]: 0 }));
+    setTexts((prev) => ({ ...prev, [key]: "" }));
+  } catch (error) {
+    console.error("Error submitting review:", error);
+    toast.error("Error submitting review!");
+  }
+};
+
   
   return (
     <div className="ordersmain">
@@ -126,10 +129,10 @@ const Orders = () => {
                         <div className="eobottomitemratingstars">
                         <ReactStars
   count={5}
-  value={ratings[item.productId] || 0}  // Use productId
+  value={ratings[`${order._id}-${item.productId}`] || 0} 
   className="responsive-stars"
   color2={"#ffd700"}
-  onChange={(newRating) => handleRatingChange(item.productId, newRating)} // Use productId
+  onChange={(newRating) => handleRatingChange(order._id, item.productId, newRating)} // Use productId
 />
                         </div>
                         <div className="eobottomitemratingreview">
@@ -137,15 +140,18 @@ const Orders = () => {
                           <textarea
   className="eobottomitemratingreviewtextarea"
   placeholder="Write a review..."
-  value={texts[item.productId] || ""} // Ensure state is properly managed
+  value={texts[`${order._id}-${item.productId}`] || ""} // Ensure state is properly managed
   onChange={(e) =>
-    setTexts((prev) => ({ ...prev, [item.productId]: e.target.value })) // Use productId
+    setTexts((prev) => ({
+      ...prev,
+      [`${order._id}-${item.productId}`]: e.target.value, // Use unique key
+    })) // Use productId
   }
 />
                             <button
                               type="button"
                               className="eobottomitemratingreviewbtn"
-                              onClick={() => handleSubmitReview(userId, item.productId)}>
+                              onClick={() => handleSubmitReview(userId, order._id, item.productId)}>
                               Submit
                             </button>
                           </form>
