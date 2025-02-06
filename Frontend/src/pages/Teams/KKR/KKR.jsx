@@ -24,6 +24,7 @@ function KKR() {
   const kt3 = useRef(null);
   const kt2i = useRef(null);
   useEffect(() => {
+    
     function raf(time) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -39,6 +40,7 @@ function KKR() {
   }, [location]);
 
   useEffect(() => {
+    
     if (kt1.current && kt2.current && kt3.current && kt2i.current) {
       const tl = gsap.timeline();
       tl.from(kt1.current.querySelectorAll("span"), {
@@ -69,9 +71,12 @@ function KKR() {
   }, []); 
 
   useGSAP(()=>{
+    const mm=gsap.matchMedia();
+    mm.add("(min-width: 490px)",()=>{
     gsap.set("#navbar",{
       y:"-6.5vw",
       opacity:0,
+
     })   
     gsap.set(".item-copy-wrapper p",{
       y:"5vw",
@@ -113,8 +118,7 @@ function KKR() {
         y:0,
         opacity:1,
       },"<")
-    
-   
+    })
   })
 
   

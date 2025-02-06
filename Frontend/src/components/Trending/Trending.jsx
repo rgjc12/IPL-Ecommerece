@@ -43,18 +43,44 @@ function Trending({ num, handlebuynow }) {
     setSelectedProduct(product);
   };
 
+
+
+
+  const [dimensions, setDimensions] = useState({
+    height: window.innerWidth > 490 ? "40vw" : "32vh",
+    width: "100vw",
+
+    });
+    
+  
+    useEffect(() => {
+      const updateDimensions = () => {
+
+        setDimensions({
+          height: window.innerWidth > 490 ? "40vw" : "32vh",
+          width: "100vw",
+        });
+       
+      };
+      window.addEventListener("resize", updateDimensions);
+      return () => window.removeEventListener("resize", updateDimensions);
+
+    }, []);
+  
+
   return (
     <>
       
        
         <div className="tr"
           style={{
-            height: "40vw",
-            width: "100vw",
+            height: dimensions.height,
+            width: dimensions.width,
             backgroundImage: `url(${backgrounds[num]})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             objectFit: "cover",
+            
           }}
         >
           <div className="trtext" style={{ color: `${colors[num]}` }}>
@@ -68,7 +94,7 @@ function Trending({ num, handlebuynow }) {
               width: "60vw",
               marginLeft: "2vw",
               backgroundColor: `${colors[num]}`,            
-              borderRadius: "10px",
+              borderRadius: "5px",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",                        
@@ -105,11 +131,8 @@ function Trending({ num, handlebuynow }) {
                 <div
                   key={idx}
                   className="imgdiv"
-                  style={{
-                    height: "16vw",
-                    width: "12vw",
-                    borderRadius: "10px",
-                    border: `2px solid ${colors[num]}`,
+                  style={{                    
+                    border:`2px solid ${colors[num]}`,
                     cursor: "pointer",
                   }}
                   onClick={() => handleProductClick(item._id)}
@@ -117,7 +140,7 @@ function Trending({ num, handlebuynow }) {
                   <img
                     src={item.imageUrl[0]}
                     alt={item.name}
-                    style={{ width: "100%", height: "100%", borderRadius: "10px", objectFit: "cover" }}
+                    style={{ width: "100%", height: "100%", borderRadius: "0px", objectFit: "cover" }}
                   />
                 </div>
               );

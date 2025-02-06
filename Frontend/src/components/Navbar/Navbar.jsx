@@ -38,6 +38,9 @@ function Navbar({ num , totalnumberofitems }) {
   const nund2=useRef(null);
   const nund3=useRef(null);
   useGSAP(()=>{
+
+
+
     navltext.current.addEventListener("mousemove",()=>{
       gsap.to(navltext.current.querySelectorAll(".navltext1"),{
         y:"-1.9vw",
@@ -95,6 +98,41 @@ function Navbar({ num , totalnumberofitems }) {
       })
     });
   })
+
+
+
+ useGSAP(()=>{
+  const mm=gsap.matchMedia();
+  mm.add("(max-width: 490px)",()=>{
+    const openbutton=document.getElementById("navformobile-l");
+    const closebutton=document.getElementById("close");
+    const sidemenu=document.getElementById("navsidemenu");
+    openbutton.addEventListener("click",()=>{
+      const tl=gsap.timeline();
+      tl.to(sidemenu,{
+        right:"0%",
+        duration:1.35,
+
+        ease:"expo.out"
+      }).from(sidemenu.querySelectorAll(".navsisemenu1"),{
+        x:"3vh",
+        duration:0.45,  
+        stagger:0.26,
+        opacity:0,        
+
+      })
+      closebutton.addEventListener("click",()=>{
+        gsap.to(sidemenu,{
+          right:"-65%",
+          duration:1.35,
+          ease:"expo.out"
+        })
+      })
+  })
+ })
+})
+ 
+ 
   const userId=useSelector(state=>state.userId.userId);
   
 
@@ -184,7 +222,8 @@ const navigate = useNavigate();
         </div>
         </div>
         <div id="navsidemenu">
-        <i className="ri-close-circle-fill" id="close"></i>
+          <div id="close"> <i className="ri-close-circle-fill" ></i></div>
+       
         <div id="in">
         
         <NavLink to="/login" onClick={handleLogout} style={{ textDecoration: "none",color:"whitesmoke"}}>

@@ -1,8 +1,10 @@
+
 .tr{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between;    
 }
+
 .trtext{
     transform: rotate(270deg); 
     transform-origin: center;
@@ -24,9 +26,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    overflow: hidden;
 }
+.trwrapr .imgdiv{
+    height: 16vw;
+    width: 12vw;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
 .trwrapr img{
     height:100%;
+
     width:100%;
     object-fit: cover;
     border-radius: 10px;    
@@ -87,4 +99,144 @@
 .desimg{
     height:36vw;
     width:24vw;
+}
+@media (max-width: 490px) {
+    .tr{
+        display: flex;
+        position: absolute;       
+        align-items: center;
+        justify-content: space-between;      
+        height: 30vh;
+        margin-top: 18vh;
+        width: 100vw;       
+    }
+    .trtext{
+        transform: rotate(270deg); 
+        transform-origin: center;
+        font-family: xx;
+        font-size: 1.5vh;
+        height:10vw;
+        width:16vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+    .trwrapr{
+        height:25vh!important;
+        width:26vw!important;   
+        margin-right: 1vw;
+        margin-left: 1vw;     
+        margin-top: 1vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        overflow: hidden;
+        
+    }
+    .trwrapr .imgdiv{
+        height: 11.5vh;
+        width: 8vh;
+        border-radius: 5px;        
+        
+    }
+
+    
+
+    .trwrapr img{
+        height:100%;    
+        width:8vh;
+        object-fit: cover;
+        border-radius: 10px;    
+    }
+    .trwrapl{
+        height:25.5vh!important;
+        width:60vw!important;
+        border-radius: 10px!important;
+    }
+  
+
+    .selected{
+        height:35vh!important;
+        width:60vw!important;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .desbox{
+        height:25vh;
+        width:36vw;
+        
+    }
+    .desimg{
+        height:25vh;
+        width:31vw;      
+        position: relative;
+        overflow: hidden!important;
+        border-radius: 10px;
+    }
+    .desimg img{
+        height:100%;
+        width:35vw!important;
+        position: absolute;
+        right:0.15vh;       
+        object-fit: cover;
+        border-radius: 10px;
+
+    }
+    .dboxt{
+        font-family: xx;
+        font-size: 0.77vh;
+        padding: 1vw;
+        display: flex;
+        align-items: center;
+        height:10vw;
+        width:100%;
+        justify-content: center;
+    }
+    .dboxm{
+    font-family: xx;
+    font-size: 1.35vw;
+    font-weight: 200;
+    padding: 1.2vw;
+    margin-right: 0.5vw;
+    display: flex;
+    align-items: center;
+    height:3vw;
+    width:95%;
+    justify-content: center;
+
+}
+.dboxb{
+    height:15vw;
+    width:96%;
+    padding:1vw;
+    margin-top: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.bl{
+    font-size: 2.3vw;
+    font-family: xx;
+    font-weight: 700;
+}
+.but10{
+    height:5.5vw;
+    width:auto;
+    font-family: xx;
+    font-size: 1.65vw;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor:pointer;
+}
+.desimg{
+    height:25vh;
+    width:31vw;
+}
+    
+
 }

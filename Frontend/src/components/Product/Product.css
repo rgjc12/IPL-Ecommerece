@@ -1,7 +1,7 @@
 .card{
     height:38vw;
     width:26vw;
-    background-color: red;
+    background-color: transparent;
     border-radius: 5px;
     overflow: hidden;
     
@@ -13,8 +13,9 @@
     margin-left: 1vw;
     margin-top: 1vw;
     border-radius: 5px;
-    background-color: red;
+    background-color: transparent;
     overflow: hidden;
+
 }
 .wrapper10 img{
     height:100%;
@@ -65,4 +66,79 @@
     height:3vw;
     width: auto;
     cursor:pointer;
+}
+@media (max-width: 490px) {
+    .card{
+        height:28.5vh;
+        width:40vw;
+        background-color: transparent;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: 1vh;
+    }
+    .wrapper10{
+        height: 19vh;
+        width: 37vw;
+        margin-left: 1vw;
+        margin-top: 1vw;
+        border-radius: 5px;
+        background-color: transparent;
+        overflow: hidden;
+
+    
+    }
+    .wrapper10 img{
+        height:100%;
+        width:100%;
+        object-fit: cover;
+    }
+    .cardbot{
+        height: 5.2vh;
+        width: 37vw;       
+        margin-left: 1.5vw;       
+        margin-top: 0.5vw;     
+    }
+    .bottext h3{
+        font-family: xx;
+        font-weight: 550;
+        font-size: 0.9vh;
+    }
+    .price{
+        font-family: xx;
+        font-size: 1.2vh;
+        font-weight: 800;
+        color: #F2C029;
+        margin-top: 0.5vw;
+
+    }
+    .botbut{
+        height: 3.5vh;
+        width: 37vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .but1{
+        font-family: xx;
+        font-weight: 800;
+        font-size: 1.1vh;
+        border-radius: 5px;
+        margin-right: 0.5vw;
+        height:3vh;
+        width: auto;
+        cursor:pointer;
+
+    }
+    .but2{
+        font-family: xx;
+        font-weight: 800;
+        font-size: 1.1vh;
+        border-radius: 5px;
+        height:3vh;
+        width: auto;
+        cursor:pointer;
+
+
+    }
 }

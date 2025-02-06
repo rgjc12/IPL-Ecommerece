@@ -38,11 +38,14 @@ function RCB() {
   const loaderimages = useRef(null);
   const loader = useRef(null);
   useGSAP(()=>{
+    const mm=gsap.matchMedia();
+    mm.add("(min-width: 490px)",()=>{
     gsap.set(".img",{y:"30vw",});
     gsap.set(loaderimages.current,{x:"22vw"});
     gsap.set("#navbar",{y:"-6.5vw"});   
     gsap.set("h1",{y:"-7vw",opacity:0});
     const tl = gsap.timeline({delay:0.6});
+
 
     tl.to(".img",{
       y:0,
@@ -78,13 +81,34 @@ function RCB() {
       clipPath:"polygon(0 0, 100% 0, 100% 100%, 0 100%)",
       duration:1.59,
       ease:"expo.out",
+      
     })
 
 
 
-    
+  })
+  mm.add("(max-width: 490px)",()=>{
+    gsap.set("h1",{y:"-10vw",opacity:0});
+    const tl = gsap.timeline({delay:0.6});
+    tl.to("h1",{
+      y:0,
+      opacity:1,
+      duration:0.45,
+      stagger:0.25,
+      ease:"expo.out",
+    },"-=0.23").to("#rtopfooter .item",{
+      clipPath:"polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+      duration:1.59,
+      ease:"expo.out",
+      
+    })
+
+
+
+  })
 
   },[])
+
 
 
 
