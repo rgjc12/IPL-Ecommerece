@@ -50,9 +50,8 @@ function Footer() {
         gsap.to(links,{
           transform:"translateY(0)",
           opacity:1,
-
-          stagger:0.1,
-          ease:"hop.out",
+          stagger:0.26,
+          ease:"expo.out",
           duration:1.99,
           scrollTrigger:{
             trigger:"#footer",
@@ -105,6 +104,54 @@ function Footer() {
 
       })
     })
+     mm.add("(max-width: 490px)",()=>{
+      gsap.to(links,{
+        transform:"translateY(0)",
+        opacity:1,
+        stagger:0.26,
+        ease:"hop.out",
+        scrollTrigger:{
+          trigger:"#footer",
+          start:"top 76%",
+          end:"top 66%",
+          scrub:true,
+          markers:true,
+        }
+        
+      })
+      gsap.to(socials,{
+        transform:"translateY(0)",
+        opacity:1,
+        stagger:0.18,
+        ease:"hop.out",
+        duration:1.99,
+        scrollTrigger:{
+          trigger:"#footer",
+          start:"top 76%",
+          end:"top 67%",
+          scrub:true,
+          markers:true,
+          
+        }
+      })
+      gsap.to("#header span",{
+        rotateY:0, 
+        transform:"translateY(0)",             
+        stagger:0.4,                
+        opacity:1,
+        ease:"expo.out",
+        duration:2.1,
+        scrollTrigger:{
+          trigger:"#footer",
+          start:"top 76%",
+          end:"top 67%",
+          scrub:0.5,
+          markers:true,
+
+        }
+
+      })
+     })
     })
       
     

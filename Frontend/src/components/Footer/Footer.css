@@ -79,8 +79,7 @@
     margin-left: 1.5vw;
     margin-top: 9vw;
    width:80%;
-   height: 20vw;
-   
+   height: 20vw;   
    overflow: hidden;
    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);  
 }
@@ -131,14 +130,19 @@
 }
 @media (max-width: 490px) {
     #footer{
-        height:30vh;
+        height:33vh;        
         width: 100.5vw;
          background: rgb(0, 0, 0);
-
         background: linear-gradient(180deg,  rgba(32, 83, 170, 1) 1%,  rgba(14, 47, 130, 1) 19%, rgba(9, 26, 72, 1) 41%,  rgba(2, 8, 24, 1) 67%, rgba(0, 0, 0, 1) 100%);
         display: flex;
         justify-content: center;
         align-items: center;    
+    }
+    #fleft{
+        height:100%;
+        width: 45%;
+        display: flex;
+        flex-direction: column;    
     }
     #fmain{
         height:4vw;
@@ -152,32 +156,85 @@
         pointer-events: none;
         margin-top:1.5vw;
         margin-left: 1.5vw;
+        margin-bottom: 29vw;
     }
     .link{
-        position: relative;
-        font-size: 1.5vh;
-        font-weight: 600;
-        font-family: ab;       
         
-    }
+        position: relative;
+        font-size: 1.65vh;
+        font-weight: 500;
+        font-family: a1;  
+        transform: translateY(4vh);
+
+         }
+         .link a{
+            
+            font-family: a1;
+            color:white;            
+            text-decoration: none;
+            font-weight: 600;
+            margin: 1vw;
+            transform: translateY(4vh);
+            opacity: 0;
+        }
     #on{
         color:rgb(183, 179, 179);
         text-decoration: none;
+        font-family: a1;
     }
-    #off{
-        position: absolute;        
-        text-decoration: none;            
-        transition: all 0.35s ease-in-out;
+    #off{         
+        text-decoration: none;         
         color:whitesmoke;
     }
-    .off{
-        padding-left:3vw;
+    .off{        
+        color:whitesmoke;
+        text-decoration: none;
+        font-family: a1;
      }
     #video-wrapper{
         display: none;
     }
 
+    #socials{
+        display: flex;
+        gap: 13vw;
+        margin-left: 15vw;
+        margin-top: 5vw;
+        color:whitesmoke;
+        font-family: a2;
+        font-size: 0.98vh;
+        font-weight: 200;
+     }
+     #socials a{
+         text-decoration: none;
+         color:whitesmoke;
+     }
+     #socials .sub-col p{
+        transform: translateY(3vh);
+        opacity: 0;    
+    }
     
+     .spacediv{
+         margin-top: 5vw;
+     }
+     #header{
+        color:whitesmoke;
+        font-family: sc;
+        font-size:11vh;    
+        font-weight: 600;
+        margin-top: 2vw;
+        overflow: hidden;
+        width:60vw;       
+       
+    }
+    #header span{
+        position: relative;
+         opacity: 0;
+        display: inline-block;
+        transform:translateY(6vh) rotateY(90deg);
+        transform-origin: bottom;
+    }
+     
 
 
 
