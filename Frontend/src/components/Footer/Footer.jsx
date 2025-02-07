@@ -115,7 +115,7 @@ function Footer() {
           start:"top 76%",
           end:"top 66%",
           scrub:true,
-          markers:true,
+          
         }
         
       })
@@ -130,7 +130,7 @@ function Footer() {
           start:"top 76%",
           end:"top 67%",
           scrub:true,
-          markers:true,
+          
           
         }
       })
@@ -146,7 +146,7 @@ function Footer() {
           start:"top 76%",
           end:"top 67%",
           scrub:0.5,
-          markers:true,
+          
 
         }
 
